@@ -15,42 +15,42 @@ const projects = [
         desc: 'A stylish and responsive event management website designed to facilitate event bookings and information sharing.',
         src: img1,
         github: 'https://github.com/Madeshmadmax7/occasio',
-        live: 'https://occasio.live'
+        live: 'https://madeshmadmax7.github.io/occasio/'
     },
     {
         title: 'Ebook store',
         desc: 'An online platform to browse, buy, and download ebooks with a user-friendly interface.',
         src: img2,
-        github: 'https://github.com/Madeshmadmax7/ebookstore',
-        live: 'https://ebookstore.live'
+        github: 'https://github.com/Madeshmadmax7/ebook-store',
+        live: 'https://madeshmadmax7.github.io/ebook-store/'
     },
     {
         title: 'Train Ticket Booking',
         desc: 'A React-based web application for booking train tickets with seat selection and payment integration.',
         src: img3,
-        github: 'https://github.com/Madeshmadmax7/train-ticket-booking',
-        live: 'https://traintickets.live'
+        github: 'https://github.com/Madeshmadmax7/train-ticket-app-react',
+        live: 'https://madeshmadmax7.github.io/train-ticket-app-react/'
     },
     {
         title: 'Trek',
         desc: 'A trekking destination booking website allowing users to explore and book trekking trips.',
         src: img4,
-        github: 'https://github.com/Madeshmadmax7/trek',
-        live: 'https://trekbooking.live'
+        github: 'https://github.com/Madeshmadmax7/Trekking-destination-booking',
+        live: 'https://madeshmadmax7.github.io/Trekking-destination-booking/'
     },
     {
         title: 'Wallpaper download',
         desc: 'A website where users can easily browse and download a variety of high-quality wallpapers.',
         src: img5,
-        github: 'https://github.com/Madeshmadmax7/wallpaperdownload',
-        live: 'https://wallpapers.live'
+        github: 'https://github.com/Madeshmadmax7/Wallpaperdownload-website',
+        live: 'https://madeshmadmax7.github.io/Wallpaperdownload-website/'
     },
     {
         title: 'Planet Earth',
         desc: 'A visually engaging project showcasing planet-related content with interactive features for users.',
         src: img6,
-        github: 'https://github.com/Madeshmadmax7/planet-earth',
-        live: 'https://planetearth.live'
+        github: 'https://github.com/Madeshmadmax7/Planet-Earth-Website',
+        live: 'https://planet-earth-iumuxjrv7-madeshs-projects-9efc3cf2.vercel.app/main.html'
     },
 ];
 
