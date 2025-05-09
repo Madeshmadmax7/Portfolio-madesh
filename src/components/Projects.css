@@ -1,0 +1,114 @@
+h6{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.project-card {
+    max-width: 800px;
+    margin: auto;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    color: white;
+    
+}
+
+.project-card:nth-child(1) .project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(0, 0, 255, 0.731), black);
+}
+
+.project-card:nth-child(2) .project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(0, 128, 0, 0.776), black);
+}
+
+.project-card:nth-child(3) .project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(0, 255, 255, 0.758), black);
+}
+
+.project-card:nth-child(4) .project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(255, 166, 0, 0.74), black);
+}
+
+.project-card:nth-child(5) .project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(128, 0, 128, 0.804), black);
+}
+
+.project-card:nth-child(6) .project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(255, 0, 0, 0.795), black);
+}
+
+
+.project-image-wrapper {
+    transition: background-image 0.3s ease;
+    padding: 18px;
+}
+.project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(0, 0, 255, 0.489), black);
+    border-radius: 12px;
+}
+
+.project-image {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.project-image:hover {
+    transform: translateY(-6px);
+}
+
+.project-info {
+    padding: 1rem;
+    background: linear-gradient(to bottom, black, transparent);
+    border-top: 2px solid black;
+}
+
+
+.project-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+}
+
+.project-info p {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.project-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-btn1{
+    background-color: #222;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 1px solid #444;
+}
+.project-btn2 {
+    background-color: white;
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 1px solid #444;
+}
+
+.project-btn:hover {
+    background-color: #444;
+    color: white;
+}

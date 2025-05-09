@@ -1,0 +1,143 @@
+:root {
+    --navtimer-bg: #fffefd;
+    --navtimer-text: #020617;
+    --navtimer-theme: #b3b3b3af;
+    --navtimer-theme-accent: #b9b9b9;
+}
+
+@property --navtimer-progress {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+}
+
+.navtimer-component {
+    --navtimer-size: 3rem;
+    display: grid;
+    grid-template-areas: "timer" "caption";
+    place-items: center;
+    place-content: center;
+    gap: 0.2em;
+}
+.navtimer-component {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    padding: 0;
+  }
+  
+
+
+.navtimer-wrapper {
+    grid-area: timer;
+    display: grid;
+    place-items: center;
+    place-content: center;
+    grid-template-areas: "container";
+    width: var(--navtimer-size);
+    height: var(--navtimer-size);
+    border-radius: 50%;
+    background: conic-gradient(
+    from 45deg,
+    var(--navtimer-theme-accent) calc(var(--navtimer-progress) * 1%),
+    transparent 0
+    );
+}
+
+.navtimer-wrapper > * {
+    grid-area: container;
+}
+
+.navtimer-timer {
+    width: calc(var(--navtimer-size) / 1.2);
+    height: calc(var(--navtimer-size) / 1.2);
+}
+
+.navtimer-caption {
+    grid-area: caption;
+}
+
+.navtimer-caption::before,
+.navtimer-caption::after {
+    margin-inline: auto;
+    content: counter(navtimer-progress);
+    font-size: calc(0.6em + var(--navtimer-size) / 6);
+    font-weight: bold;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.navtimer-caption::after {
+    content: "%";
+}
+
+@supports (animation-timeline: scroll()) {
+    body {
+    height: 300vh;
+    }
+
+    :is(.navtimer-component, .navtimer-wrapper, .navtimer-timer, .navtimer-hand, .navtimer-switch) {
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: scroll();
+    }
+
+    .navtimer-component {
+    --navtimer-plunge-offset: 10rem;
+    --navtimer-plunge-start: calc(100% - var(--navtimer-plunge-offset) * 2);
+    --navtimer-plunge-end: calc(100% - var(--navtimer-plunge-offset));
+    animation-name: navtimer-progress;
+    animation-range: 0 var(--navtimer-plunge-start);
+    counter-reset: navtimer-progress var(--navtimer-progress);
+    }
+
+    .navtimer-wrapper {
+    animation-name: navtimer-progress, navtimer-turn-upright;
+    animation-range: 0 var(--navtimer-plunge-start),
+        var(--navtimer-plunge-start) var(--navtimer-plunge-end);
+    }
+
+    .navtimer-timer {
+    --navtimer-plunge-depth: 0.25em;
+    transform-origin: 50% 0;
+    animation-name: navtimer-plunge;
+    animation-range: var(--navtimer-plunge-start) var(--navtimer-plunge-end);
+    }
+
+    .navtimer-switch {
+    --navtimer-plunge-depth: 1em;
+    transform-origin: 50% 0;
+    animation-name: navtimer-plunge;
+    animation-range: var(--navtimer-plunge-start) var(--navtimer-plunge-end);
+    }
+
+    .navtimer-hand {
+    transform-origin: 50%;
+    rotate: calc((var(--navtimer-progress) / 100) * 360deg);
+    animation-name: navtimer-progress;
+    animation-range: 0 var(--navtimer-plunge-start);
+    }
+
+    @keyframes navtimer-progress {
+    to {
+        --navtimer-progress: 100;
+    }
+    }
+
+    @keyframes navtimer-turn-upright {
+    from {
+        rotate: -10deg;
+    }
+    to {
+        rotate: 0;
+    }
+    }
+
+    @keyframes navtimer-plunge {
+    50% {
+        translate: 0 var(--navtimer-plunge-depth);
+    }
+    }
+}

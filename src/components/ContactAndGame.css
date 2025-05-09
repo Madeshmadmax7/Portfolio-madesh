@@ -1,0 +1,69 @@
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    padding: 40px;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.contact-form-container,
+.reaction-timer {
+    flex: 1;
+    max-width: 450px;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding: 60px 40px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Large tablets & small laptops */
+@media (max-width: 1024px) {
+    .container-wrapper {
+        gap: 30px;
+        padding: 35px;
+    }
+
+    .contact-form-container,
+    .reaction-timer {
+        max-width: 500px;
+        padding: 55px 35px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .container-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        padding: 30px 20px;
+    }
+
+    .contact-form-container,
+    .reaction-timer {
+        max-width: 90%;
+        padding: 50px 25px;
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    .container-wrapper {
+        padding: 25px 15px;
+        gap: 20px;
+    }
+
+    .contact-form-container,
+    .reaction-timer {
+        padding: 40px 20px;
+    }
+}
