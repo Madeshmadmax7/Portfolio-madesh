@@ -16,6 +16,10 @@ body {
     margin: 50px;
     padding: 0 1rem;
 }
+.container h2{
+    text-align: center;
+
+}
 
 .header-nav {
     display: flex;

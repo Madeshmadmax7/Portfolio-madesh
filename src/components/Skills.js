@@ -9,6 +9,7 @@ return (
         <br></br>
         <section className="skills-section">
             <div className="container">
+            <h2>Skills</h2>
                 <div className="skills-grid">
                 {[
                     { name: 'C++', logo: '/logos/cplusplus.svg' },

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, createRef } from 'react';
+import React, { useRef, useState, useEffect, createRef, useCallback } from 'react';
 import { gsap } from 'gsap';
 import './Navbar.css';
 import './NavTimer.css';
@@ -41,8 +41,7 @@ const menuRef = useRef();
 const indicatorRef = useRef();
 const itemRefs = useRef(items.map(() => createRef()));
 const [active, setActive] = useState(0);
-
-const animate = () => {
+const animate = useCallback(() => {
     const menuOffset = menuRef.current.getBoundingClientRect();
     const activeItem = itemRefs.current[active].current;
     if (!activeItem) return;
@@ -57,13 +56,14 @@ const animate = () => {
     duration: 0.4,
     };
     gsap.to(indicatorRef.current, settings);
-};
+}, [active]);
 
 useEffect(() => {
     animate();
     window.addEventListener('resize', animate);
     return () => window.removeEventListener('resize', animate);
-}, [active]);
+}, [animate]);
+
 
 return (
     <nav className="nav-menu" ref={menuRef}>
