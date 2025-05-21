@@ -5,11 +5,19 @@ import img3 from '../project-images/3.png';
 import img4 from '../project-images/4.png';
 import img5 from '../project-images/5.png';
 import img6 from '../project-images/6.png';
+import img7 from '../project-images/7.png';
 import './Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 const projects = [
+    {
+        title: 'UI Crate',
+        desc: 'A collection of ready to use react components for your projects.',
+        src: img7,
+        github: 'https://github.com/Madeshmadmax7/uicrate',
+        live: 'https://uicrate.netlify.app'
+    },
     {
         title: 'Occasio',
         desc: 'A stylish and responsive event management website designed to facilitate event bookings and information sharing.',
