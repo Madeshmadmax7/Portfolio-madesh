@@ -7,6 +7,8 @@
     flex-wrap: wrap;
     min-height: 100vh;
     box-sizing: border-box;
+    background-color: #0d0d0d;
+    color: #e0e0e0;
 }
 
 .contact-form-container,
@@ -14,15 +16,14 @@
     flex: 1;
     max-width: 450px;
     width: 100%;
-    background-color: #000;
-    color: #fff;
+    background-color: #1e1e1e;
+    color: #ffffff;
     padding: 60px 40px;
     border-radius: 15px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Large tablets & small laptops */

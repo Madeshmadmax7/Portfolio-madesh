@@ -6,10 +6,9 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #fff;
-    color: #111;
+    background-color: #0d0d0d;
+    color: #f5f5f5;
 }
-
 
 .container {
     max-width: 1200px;
@@ -18,12 +17,11 @@ body {
 }
 .container h2{
     text-align: center;
-
 }
 
 .header-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1.5rem 0;
 }
@@ -31,6 +29,7 @@ body {
 .header-logo {
     font-size: 1.5rem;
     font-weight: 700;
+    color: #ffffff;
 }
 
 .header-links {
@@ -42,11 +41,12 @@ body {
 .header-links li {
     font-weight: 500;
     cursor: pointer;
+    color: #ffffff;
 }
 
 .resume-btn {
-    background-color: black;
-    color: white;
+    background-color: #ffffff;
+    color: #000000;
     padding: 10px 16px;
     border-radius: 8px;
     border: none;
@@ -79,13 +79,13 @@ body {
 }
 
 .stroke-text {
-    -webkit-text-stroke: 1px black;
+    -webkit-text-stroke: 1px white;
     color: transparent;
     font-weight: 700;
 }
 
 .hero-text p {
-    color: #555;
+    color: #aaaaaa;
     margin-bottom: 1.5rem;
     max-width: 500px;
 }
@@ -110,15 +110,16 @@ body {
 
 .social-icons button {
     background: none;
-    border: 1px solid #ccc;
+    border: 1px solid #888;
     padding: 6px;
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s;
+    color: #ffffff;
 }
 
 .social-icons button:hover {
-    background: #f0f0f0;
+    background: #1f1f1f;
 }
 
 .social-icon {
@@ -146,6 +147,7 @@ body {
 .skills-section h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
+    color: #ffffff;
 }
 
 .skills-grid {
@@ -161,6 +163,8 @@ body {
     padding: 3rem 1rem;
     border-radius: 12px;
     transition: transform 0.3s ease;
+    background-color: #1a1a1a;
+    color: #ffffff;
 }
 
 .skill-card:hover {
@@ -170,9 +174,12 @@ body {
 .skill-icon {
     width: 40px;
     height: 40px;
+    color: white;
     margin-bottom: 1rem;
     object-fit: contain;
 }
+
+
 
 .black-box {
     background-color: #000;
@@ -180,11 +187,10 @@ body {
 }
 
 .white-box {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #ccc;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid #444;
 }
-
 
 @media (max-width: 768px) {
     .header-links {
@@ -215,7 +221,6 @@ body {
 }
 
 
-/* Tablets */
 @media (max-width: 768px) {
     .header-links {
         display: none;

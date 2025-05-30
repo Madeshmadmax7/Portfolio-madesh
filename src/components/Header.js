@@ -17,22 +17,22 @@ return (
             </p>
             <div className="social-icons">
                 <a href="https://github.com/Madeshmadmax7" target="_blank" rel="noopener noreferrer">
-                    <button><img src="/logos/github.svg" alt="GitHub" className="social-icon" /></button>
+                    <button><img src="/logos/githubw.svg" alt="GitHub" className="social-icon" /></button>
                 </a>
                 <a href="https://linkedin.com/in/MadeshA" target="_blank" rel="noopener noreferrer">
-                    <button><img src="/logos/linkedin.svg" alt="LinkedIn" className="social-icon" /></button>
+                    <button><img src="/logos/linkedinw.svg" alt="LinkedIn" className="social-icon" /></button>
                 </a>
                 <a href="https://discord.com/users/1331216531362811968" target="_blank" rel="noopener noreferrer">
-                    <button><img src="/logos/discord.svg" alt="Discord" className="social-icon" /></button>
+                    <button><img src="/logos/discordw.svg" alt="Discord" className="social-icon" /></button>
                 </a>
                 <a href="https://www.reddit.com/user/Madesh_A/" target="_blank" rel="noopener noreferrer">
-                    <button><img src="/logos/reddit.svg" alt="Reddit" className="social-icon" /></button>
+                    <button><img src="/logos/redditw.svg" alt="Reddit" className="social-icon" /></button>
                 </a>
                 <a href="https://instagram.com/_mad_max_clicks_" target="_blank" rel="noopener noreferrer">
-                    <button><img src="/logos/instagram.svg" alt="Instagram" className="social-icon" /></button>
+                    <button><img src="/logos/instagramw.svg" alt="Instagram" className="social-icon" /></button>
                 </a>
                 <a href="https://www.facebook.com/share/1HhfoL82CT/" target="_blank" rel="noopener noreferrer">
-                    <button><img src="/logos/facebook.svg" alt="Facebook" className="social-icon" /></button>
+                    <button><img src="/logos/facebookw.svg" alt="Facebook" className="social-icon" /></button>
                 </a>
             </div>
         </div>

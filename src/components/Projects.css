@@ -1,114 +1,109 @@
-h6{
-    font-size: 2rem;
-    margin-bottom: 2rem;
+h6 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
     text-align: center;
 }
 
 .projects-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
 }
 
 .project-card {
-    max-width: 800px;
+    max-width: 600px;
     margin: auto;
-    background-color: #000;
-    border-radius: 12px;
+    background-color: #111;
+    border-radius: 10px;
     overflow: hidden;
     color: white;
-    
+    font-size: 0.9rem;
+}
+
+.project-card .project-image-wrapper {
+    transition: background-image 0.3s ease;
+    padding: 12px;
 }
 
 .project-card:nth-child(1) .project-image-wrapper:hover {
-    background-image: linear-gradient(rgba(0, 0, 255, 0.731), black);
+    background-image: linear-gradient(rgba(0, 0, 255, 0.6), black);
 }
-
 .project-card:nth-child(2) .project-image-wrapper:hover {
-    background-image: linear-gradient(rgba(0, 128, 0, 0.776), black);
+    background-image: linear-gradient(rgba(0, 128, 0, 0.6), black);
 }
-
 .project-card:nth-child(3) .project-image-wrapper:hover {
-    background-image: linear-gradient(rgba(0, 255, 255, 0.758), black);
+    background-image: linear-gradient(rgba(0, 255, 255, 0.6), black);
 }
-
 .project-card:nth-child(4) .project-image-wrapper:hover {
-    background-image: linear-gradient(rgba(255, 166, 0, 0.74), black);
+    background-image: linear-gradient(rgba(255, 166, 0, 0.6), black);
 }
-
 .project-card:nth-child(5) .project-image-wrapper:hover {
-    background-image: linear-gradient(rgba(128, 0, 128, 0.804), black);
+    background-image: linear-gradient(rgba(128, 0, 128, 0.6), black);
 }
-
 .project-card:nth-child(6) .project-image-wrapper:hover {
-    background-image: linear-gradient(rgba(255, 0, 0, 0.795), black);
+    background-image: linear-gradient(rgba(255, 0, 0, 0.6), black);
 }
-
-
-.project-image-wrapper {
-    transition: background-image 0.3s ease;
-    padding: 18px;
-}
-.project-image-wrapper:hover {
-    background-image: linear-gradient(rgba(0, 0, 255, 0.489), black);
-    border-radius: 12px;
+.project-card:nth-child(7) .project-image-wrapper:hover {
+    background-image: linear-gradient(rgba(246, 255, 0, 0.6), black);
 }
 
 .project-image {
     width: 100%;
     display: block;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: transform 0.3s ease;
 }
 
 .project-image:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
 }
 
 .project-info {
-    padding: 1rem;
-    background: linear-gradient(to bottom, black, transparent);
-    border-top: 2px solid black;
+    padding: 0.75rem;
+    background: linear-gradient(to bottom, #000, transparent);
+    border-top: 1px solid #222;
 }
 
-
 .project-info h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.4rem;
+    margin: 0 0 0.4rem 0;
+    font-size: 1.1rem;
 }
 
 .project-info p {
-    margin: 0 0 1rem 0;
-    font-size: 1rem;
-    color: #ccc;
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9rem;
+    color: #bbb;
 }
 
 .project-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
 }
 
-.project-btn1{
+.project-btn1,
+.project-btn2 {
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    border: 1px solid #444;
+    transition: background-color 0.3s ease;
+}
+
+.project-btn1 {
     background-color: #222;
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    border: 1px solid #444;
 }
+
 .project-btn2 {
     background-color: white;
     color: black;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    border: 1px solid #444;
 }
 
-.project-btn:hover {
+.project-btn1:hover,
+.project-btn2:hover {
     background-color: #444;
     color: white;
 }

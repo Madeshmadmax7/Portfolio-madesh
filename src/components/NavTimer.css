@@ -1,8 +1,8 @@
 :root {
-    --navtimer-bg: #fffefd;
-    --navtimer-text: #020617;
-    --navtimer-theme: #b3b3b3af;
-    --navtimer-theme-accent: #b9b9b9;
+    --navtimer-bg: #fff;
+    --navtimer-text: #fff;
+    --navtimer-theme: #000;
+    --navtimer-theme-accent: #626262c0;
 }
 
 @property --navtimer-progress {
