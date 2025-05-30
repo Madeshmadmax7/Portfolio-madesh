@@ -17,7 +17,7 @@
 }
 
 .contact-form-container h1 span {
-    color: #6366f1;
+    color: rgb(17, 0, 255);
 }
 
 .contact-form-container form {
@@ -46,7 +46,7 @@
 
 .contact-form-container form input:focus,
 .contact-form-container form textarea:focus {
-    border-bottom: 1px solid #6366f1;
+    border-bottom: 1px solid #0004ff;
 }
 
 .contact-form-container form button {
