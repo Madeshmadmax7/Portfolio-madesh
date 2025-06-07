@@ -6,11 +6,19 @@ import img4 from '../project-images/4.png';
 import img5 from '../project-images/5.png';
 import img6 from '../project-images/6.png';
 import img7 from '../project-images/7.png';
+import img8 from '../project-images/8.png';
 import './Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 const projects = [
+    {
+        title: 'Disqord',
+        desc: 'A Clonned version of Discord.',
+        src: img8,
+        github: 'https://github.com/Madeshmadmax7/discord-clone',
+        live: 'https://disqord.netlify.app'
+    },
     {
         title: 'UI Crate',
         desc: 'A collection of ready to use react components for your projects.',
