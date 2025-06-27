@@ -47,6 +47,9 @@ h6 {
 .project-card:nth-child(7) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(246, 255, 0, 0.6), black);
 }
+.project-card:nth-child(8) .project-image-wrapper:hover {
+    background-image: linear-gradient(hsla(346, 100%, 50%, 0.6), black);
+}
 
 .project-image {
     width: 100%;
