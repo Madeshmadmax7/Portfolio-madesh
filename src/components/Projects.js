@@ -7,6 +7,7 @@ import img5 from '../project-images/5.png';
 import img6 from '../project-images/6.png';
 import img7 from '../project-images/7.png';
 import img8 from '../project-images/8.png';
+import img9 from '../project-images/9.png';
 import './Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
@@ -18,6 +19,13 @@ const projects = [
         src: img8,
         github: 'https://github.com/Madeshmadmax7/discord-clone',
         live: 'https://disqord.netlify.app'
+    },
+    {
+        title: 'Portfolio',
+        desc: 'My personal Portfolio.',
+        src: img9,
+        github: 'https://github.com/Madeshmadmax7/portfolio',
+        live: 'https://madeshdev.netlify.app'
     },
     {
         title: 'UI Crate',
