@@ -14,6 +14,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const projects = [
     {
+        title: 'StayFinder',
+        desc: 'A full-stack hotel booking platform built with React, Spring Boot, and MySQL.',
+        src: img10,
+        github: 'https://github.com/Madeshmadmax7/stayfinder',
+        live: 'https://stayfinderrr.netlify.app'
+    },
+    {
         title: 'Disqord',
         desc: 'A Clonned version of Discord.',
         src: img8,
