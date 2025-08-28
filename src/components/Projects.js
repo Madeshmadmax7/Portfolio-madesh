@@ -9,11 +9,19 @@ import img7 from '../project-images/7.png';
 import img8 from '../project-images/8.png';
 import img9 from '../project-images/9.png';
 import img10 from '../project-images/10.png';
+import img11 from '../project-images/11.png';
 import './Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 const projects = [
+    {
+        title: 'BatsUp',
+        desc: 'A full-stack cricket booking and management platform built with Spring Boot and MySQL, featuring real-time match, team, and player tracking.',
+        src: img11,
+        github: 'https://github.com/Madeshmadmax7/BatsUp',
+        live: 'https://batsup.netlify.app/',
+    },
     {
         title: 'StayFinder',
         desc: 'A full-stack hotel booking platform built with React, Spring Boot, and MySQL.',
