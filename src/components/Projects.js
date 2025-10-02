@@ -16,6 +16,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const projects = [
     {
+        title: 'Monastery360',
+        desc: 'Built an immersive 360° virtual tour PWA to digitally preserve and showcase Sikkim’s monasteries. Users can explore sites virtually, view digital archives of murals and manuscripts, and interact with hotspots for cultural insights. Developed with React, Vite, Tailwind, A-Frame, and Pannellum, the app works offline for accessibility in remote regions, supporting tourism, education, and heritage preservation.',
+        src: img12,
+        github: 'https://github.com/Madeshmadmax7/SacredSikkim',
+        live: 'https://monastery360.netlify.app/',
+    },
+    {
         title: 'BatsUp',
         desc: 'A full-stack cricket booking and management platform built with Spring Boot and MySQL, featuring real-time match, team, and player tracking.',
         src: img11,
