@@ -10,6 +10,7 @@ import img8 from '../project-images/8.png';
 import img9 from '../project-images/9.png';
 import img10 from '../project-images/10.png';
 import img11 from '../project-images/11.png';
+import img12 from '../project-images/12.png';
 import './Projects.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
