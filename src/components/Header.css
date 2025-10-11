@@ -17,7 +17,8 @@ body {
     margin: 50px;
     padding: 0 1rem;
 }
-.container h2{
+
+.container h2 {
     text-align: center;
 }
 
@@ -97,6 +98,7 @@ body {
     display: flex;
     gap: 0.5rem;
 }
+
 .hero-container {
     display: flex;
     align-items: center;
@@ -104,6 +106,7 @@ body {
     flex-wrap: wrap;
     gap: 2rem;
 }
+
 .hero-image img {
     width: 75%;
     max-width: 300px;
@@ -199,16 +202,17 @@ body {
     .header-links {
         display: none;
     }
-    
+
     .hero-text h1 {
         font-size: 2rem;
     }
-    
+
     .hero-text p {
         font-size: 1rem;
     }
-    
+
 }
+
 @media (max-width: 1024px) {
     .hero-text h1 {
         font-size: 2.2rem;
@@ -268,5 +272,48 @@ body {
 
     .skill-card {
         padding: 2rem 0.5rem;
+    }
+}
+
+.resume-section {
+    margin-top: 1.8rem;
+}
+
+/* Dark-themed modern resume button */
+.resume-btn {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    padding: 12px 22px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+
+.resume-icon {
+    font-size: 1.1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .resume-btn {
+        padding: 10px 18px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .resume-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        font-size: 0.9rem;
     }
 }
