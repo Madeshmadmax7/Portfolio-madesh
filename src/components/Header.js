@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import meLego from '../profile-images/me-lego.png';
+import meLego from '../profile-images/menewblue.jpg';
 
 const Header = () => {
     return (
