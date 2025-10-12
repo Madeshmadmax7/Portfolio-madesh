@@ -7,7 +7,7 @@
     flex-wrap: wrap;
     min-height: 100vh;
     box-sizing: border-box;
-    background-color: #0d0d0d;
+    background-color: #000000;
     color: #e0e0e0;
 }
 
@@ -16,7 +16,7 @@
     flex: 1;
     max-width: 450px;
     width: 100%;
-    background-color: #1e1e1e;
+    background-color: #101010;
     color: #ffffff;
     padding: 60px 40px;
     border-radius: 15px;

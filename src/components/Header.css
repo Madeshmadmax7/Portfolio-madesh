@@ -169,7 +169,7 @@ body {
     padding: 3rem 1rem;
     border-radius: 12px;
     transition: transform 0.3s ease;
-    background-color: #1a1a1a;
+    background-color: #0c0c0c;
     color: #ffffff;
 }
 
@@ -193,7 +193,7 @@ body {
 }
 
 .white-box {
-    background-color: #1a1a1a;
+    background-color: #101010;
     color: #ffffff;
     border: 1px solid #444;
 }

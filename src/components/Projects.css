@@ -14,13 +14,14 @@ h6 {
 .project-card {
     max-width: 600px;
     margin: auto;
-    background-color: #111;
+    background: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.8), transparent);
     border-radius: 10px;
     overflow: hidden;
     color: white;
     font-size: 0.9rem;
 }
 
+/* Keep hover gradients per project */
 .project-card .project-image-wrapper {
     transition: background-image 0.3s ease;
     padding: 12px;
@@ -74,10 +75,12 @@ h6 {
     transform: translateY(-4px);
 }
 
+/* 🔧 FIX: Remove the thin white line and unify color */
 .project-info {
     padding: 0.75rem;
-    background: linear-gradient(to bottom, #000, transparent);
-    border-top: 1px solid #222;
+    margin-top: -5px; /* removes the visible white line gap */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
+    border-top: none; /* remove border line */
 }
 
 .project-info h3 {
