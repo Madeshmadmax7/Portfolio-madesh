@@ -2,12 +2,16 @@ import React from 'react';
 import Contact from './Contact';
 import ReactionTimer from './ReactionTimer';
 import './ContactAndGame.css';
+import GithubContributionCard from './GithubContributionCard';
+import GithubContributionsGrid from './Contribution';
+import ContributionGraph from './Contribution';
 
 const ContactAndGame = () => {
 return (
     <div className="container-wrapper">
-    <Contact />
-    <ReactionTimer />
+        <Contact />
+        <ReactionTimer />
+        <GithubContributionCard username="Madeshmadmax7" />
     </div>
 );
 };
