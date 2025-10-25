@@ -590,6 +590,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
     <>
       <div className="github-card-wrapper">
         <div className="github-card-container">
+          <br></br>
           <h6 className="h6">Heat Map</h6>
           <div className="github-card">
             {/* Browser Header */}

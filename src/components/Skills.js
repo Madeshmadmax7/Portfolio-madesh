@@ -4,9 +4,6 @@ import './Header.css';
 const Skills = () => {
 return (
     <header className="header-wrapper">
-        <br></br>
-        <br></br>
-        <br></br>
         <section className="skills-section">
             <div className="container">
             <h2>Skills</h2>
