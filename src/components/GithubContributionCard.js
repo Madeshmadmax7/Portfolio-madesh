@@ -560,20 +560,6 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
 
   if (loading || !userData) return <div className="github-card-wrapper">Loading...</div>;
 
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ];
 
   return (
     <div className="github-card-wrapper">
