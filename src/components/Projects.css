@@ -1,7 +1,12 @@
-h6 {
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Staatliches&display=swap');
+
+h6.head {
+    font-family: "Exo 2", sans-serif;
+    font-size: 2rem;
+    color: #ffffff;
+    font-weight: 700;
     text-align: center;
+    margin-top: 0.5rem;
 }
 
 .projects-container {
@@ -9,6 +14,10 @@ h6 {
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem;
+    max-width: 1200px;
+    /* Added max-width for better layout consistency */
+    margin: 0 auto;
+    /* Center the container */
 }
 
 .project-card {
@@ -30,36 +39,47 @@ h6 {
 .project-card:nth-child(1) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(0, 0, 255, 0.6), black);
 }
+
 .project-card:nth-child(2) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(0, 128, 0, 0.6), black);
 }
+
 .project-card:nth-child(3) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(0, 255, 255, 0.6), black);
 }
+
 .project-card:nth-child(4) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(255, 166, 0, 0.6), black);
 }
+
 .project-card:nth-child(5) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(128, 0, 128, 0.6), black);
 }
+
 .project-card:nth-child(6) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(255, 0, 0, 0.6), black);
 }
+
 .project-card:nth-child(7) .project-image-wrapper:hover {
     background-image: linear-gradient(rgba(246, 255, 0, 0.6), black);
 }
+
 .project-card:nth-child(8) .project-image-wrapper:hover {
     background-image: linear-gradient(hsla(346, 100%, 50%, 0.6), black);
 }
+
 .project-card:nth-child(9) .project-image-wrapper:hover {
     background-image: linear-gradient(hsla(180, 100%, 50%, 0.6), black);
 }
+
 .project-card:nth-child(10) .project-image-wrapper:hover {
     background-image: linear-gradient(hsla(318, 100%, 50%, 0.422), black);
 }
+
 .project-card:nth-child(11) .project-image-wrapper:hover {
     background-image: linear-gradient(hsla(0, 70%, 28%, 0.422), black);
 }
+
 .project-card:nth-child(12) .project-image-wrapper:hover {
     background-image: linear-gradient(hsla(327, 97%, 29%, 0.422), black);
 }
@@ -75,12 +95,11 @@ h6 {
     transform: translateY(-4px);
 }
 
-/* 🔧 FIX: Remove the thin white line and unify color */
 .project-info {
     padding: 0.75rem;
-    margin-top: -5px; /* removes the visible white line gap */
+    margin-top: -5px;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
-    border-top: none; /* remove border line */
+    border-top: none;
 }
 
 .project-info h3 {
@@ -124,4 +143,129 @@ h6 {
 .project-btn2:hover {
     background-color: #444;
     color: white;
+}
+
+.load-more-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+}
+
+.load-more-btn {
+    padding: 0.6rem 1.2rem;
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background-color: #444;
+}
+
+.loader {
+    font-size: 18px;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #0040ff;
+    position: relative;
+}
+
+.loader::after {
+    content: 'Explore';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    animation: animloader 10s ease-in infinite;
+}
+
+@keyframes animloader {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+.blue-loader,
+.blue-loader:before,
+.blue-loader:after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: blueFade 1.8s infinite ease-in-out;
+}
+
+.blue-loader {
+    color: #007BFF;
+    font-size: 7px;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+}
+
+.blue-loader:before,
+.blue-loader:after {
+    content: '';
+    position: absolute;
+    top: 0;
+}
+
+.blue-loader:before {
+    left: -3.5em;
+    animation-delay: -0.32s;
+}
+
+.blue-loader:after {
+    left: 3.5em;
+}
+
+@keyframes blueFade {
+
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 2.5em 0 -1.3em #007BFF;
+    }
+
+    40% {
+        box-shadow: 0 2.5em 0 0 #007BFF;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h6.head {
+        font-size: 1.8rem;
+    }
+
+    .projects-container {
+        padding: 1rem;
+    }
+
+    .project-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h6.head {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
 }

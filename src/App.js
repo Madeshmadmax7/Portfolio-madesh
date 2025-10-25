@@ -4,13 +4,17 @@ import Navbar from './components/Navbar';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import ContactAndGame from './components/ContactAndGame';
-
+import GithubContributionCard from './components/GithubContributionCard';
+import './App.css';
 function App() {
   return (
     <div>
       <Navbar/>
       <section id='home'>
         <Header/>
+      </section>
+      <section id='pulse'>
+        <GithubContributionCard/>
       </section>
       <section id='skills'>
         <Skills />

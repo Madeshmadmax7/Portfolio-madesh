@@ -4,9 +4,10 @@ import './Navbar.css';
 import './NavTimer.css';
 
 const navItems = [
-{ name: 'Skills', id: 'skills' },
-{ name: 'Projects', id: 'projects' },
-{ name: 'Contact', id: 'contact' },
+    { name: 'Pulse', id: 'pulse' },
+    { name: 'Skills', id: 'skills' },
+    { name: 'Projects', id: 'projects' },
+    { name: 'Contact', id: 'contact' },
 ];
 
 const scrollToSection = (id, duration = 800) => {
