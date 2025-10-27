@@ -1,0 +1,126 @@
+.achievements-page {
+    margin-top: 10px;
+    min-height: 100vh;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 4rem 2rem;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.achievements-page h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.achievements-intro {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.6rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.8rem;
+    justify-items: center;
+}
+
+.achievement-card {
+    position: relative;
+    width: 100%;
+    max-width: 280px;
+    padding: 1.5rem;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.achievement-card:hover {
+    transform: translateY(-2px);
+}
+
+.achievement-icon {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    display: inline-flex;
+    padding: 10px;
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+.achievement-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.achievement-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.difficulty {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.difficulty.easy,
+.difficulty.medium,
+.difficulty.hard {
+    background: rgba(62, 59, 59, 0.84);
+    color: #fff;
+}
+
+/* ✨ Unlocked Style */
+.achievement-card.unlocked {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+}
+
+.achievement-card.unlocked .achievement-icon {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 🔒 Locked Style */
+.achievement-card.locked {
+    filter: grayscale(0.9);
+    opacity: 0.5;
+}
+
+.lock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: #999;
+    border-radius: 14px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

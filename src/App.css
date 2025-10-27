@@ -14,3 +14,21 @@ h6 {
         opacity: 1;
     }
 }
+
+.floating-trophy {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    font-size: 1.4rem;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.2s ease, color 0.3s ease, filter 0.3s;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.4));
+}
+
+.floating-trophy:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: #fff;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}

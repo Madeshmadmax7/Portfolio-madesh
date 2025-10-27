@@ -1,45 +1,125 @@
-import React from 'react';
-import './Header.css';
-import meLego from '../profile-images/menewblue.jpg';
+import React, { useState } from "react";
+import "./Header.css";
+import meLego from "../profile-images/menewblue.jpg";
+import { unlockAchievement } from "./Achievements";
+import AchievementNotification from "./AchievementNotification";
 
 const Header = () => {
+    const [showNotif, setShowNotif] = useState(false);
+
+    const handleResumeClick = () => {
+        unlockAchievement(2);
+        setShowNotif(true);
+    };
+
     return (
         <header className="header-wrapper">
             <section className="hero-section">
                 <div className="container hero-container">
                     <div className="hero-text">
                         <h1>
-                            Hello I’m <span className="bold">Madesh.</span><br />
-                            <span className="bold">Full Stack <span className="stroke-text">Developer</span></span><br />
+                            Hello I’m <span className="bold">Madesh.</span>
+                            <br />
+                            <span className="bold">
+                                Full Stack <span className="stroke-text">Developer</span>
+                            </span>
+                            <br />
                         </h1>
                         <p>
-                            I’m a passionate engineering student with a focus on creating seamless, full-stack solutions. I bridge the gap between great design and robust functionality, building user centered applications that are both intuitive and efficient. I’m dedicated to bringing ideas to life with technology.
+                            I’m a passionate engineering student with a focus on creating
+                            seamless, full-stack solutions. I bridge the gap between great
+                            design and robust functionality, building user-centered
+                            applications that are both intuitive and efficient. I’m dedicated
+                            to bringing ideas to life with technology.
                         </p>
+
                         <div className="social-icons">
-                            <a href="https://github.com/Madeshmadmax7" target="_blank" rel="noopener noreferrer">
-                                <button><img src="/logos/githubw.svg" alt="GitHub" className="social-icon" /></button>
+                            <a
+                                href="https://github.com/Madeshmadmax7"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button>
+                                    <img
+                                        src="/logos/githubw.svg"
+                                        alt="GitHub"
+                                        className="social-icon"
+                                    />
+                                </button>
                             </a>
-                            <a href="https://linkedin.com/in/MadeshA" target="_blank" rel="noopener noreferrer">
-                                <button><img src="/logos/linkedinw.svg" alt="LinkedIn" className="social-icon" /></button>
+                            <a
+                                href="https://linkedin.com/in/MadeshA"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button>
+                                    <img
+                                        src="/logos/linkedinw.svg"
+                                        alt="LinkedIn"
+                                        className="social-icon"
+                                    />
+                                </button>
                             </a>
-                            <a href="https://discord.com/users/1331216531362811968" target="_blank" rel="noopener noreferrer">
-                                <button><img src="/logos/discordw.svg" alt="Discord" className="social-icon" /></button>
+                            <a
+                                href="https://discord.com/users/1331216531362811968"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button>
+                                    <img
+                                        src="/logos/discordw.svg"
+                                        alt="Discord"
+                                        className="social-icon"
+                                    />
+                                </button>
                             </a>
-                            <a href="https://www.reddit.com/user/Madesh_A/" target="_blank" rel="noopener noreferrer">
-                                <button><img src="/logos/redditw.svg" alt="Reddit" className="social-icon" /></button>
+                            <a
+                                href="https://www.reddit.com/user/Madesh_A/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button>
+                                    <img
+                                        src="/logos/redditw.svg"
+                                        alt="Reddit"
+                                        className="social-icon"
+                                    />
+                                </button>
                             </a>
-                            <a href="https://instagram.com/_mad_max_clicks_" target="_blank" rel="noopener noreferrer">
-                                <button><img src="/logos/instagramw.svg" alt="Instagram" className="social-icon" /></button>
+                            <a
+                                href="https://instagram.com/_mad_max_clicks_"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button>
+                                    <img
+                                        src="/logos/instagramw.svg"
+                                        alt="Instagram"
+                                        className="social-icon"
+                                    />
+                                </button>
                             </a>
-                            <a href="https://www.facebook.com/share/1HhfoL82CT/" target="_blank" rel="noopener noreferrer">
-                                <button><img src="/logos/facebookw.svg" alt="Facebook" className="social-icon" /></button>
+                            <a
+                                href="https://www.facebook.com/share/1HhfoL82CT/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <button>
+                                    <img
+                                        src="/logos/facebookw.svg"
+                                        alt="Facebook"
+                                        className="social-icon"
+                                    />
+                                </button>
                             </a>
                         </div>
+
                         <div className="resume-section">
                             <a
                                 href="/resume.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={handleResumeClick}
                             >
                                 <button className="resume-btn">
                                     <i className="fas fa-download resume-icon"></i>
@@ -48,6 +128,7 @@ const Header = () => {
                             </a>
                         </div>
                     </div>
+
                     <div className="hero-image">
                         <div className="image-wrapper">
                             <img src={meLego} alt="Madesh LEGO" className="lego-img" />
@@ -55,6 +136,14 @@ const Header = () => {
                     </div>
                 </div>
             </section>
+
+            {showNotif && (
+                <AchievementNotification
+                    title="Achievement Unlocked"
+                    description="Recruiter's Eye"
+                    onClose={() => setShowNotif(false)}
+                />
+            )}
         </header>
     );
 };
