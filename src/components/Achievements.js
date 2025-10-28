@@ -1,16 +1,17 @@
-// src/components/Achievements.js
 import React, { useEffect, useState } from "react";
-import { Award, Map, Search, Type, Zap, Eye } from "lucide-react";
+import { Award, Map, Search, Type, Zap, Eye , Linkedin } from "lucide-react";
 import "./Achievements.css";
 import AchievementNotification from "./AchievementNotification";
 
 const achievementsData = [
-    { id: 1, icon: <Search size={26} />, title: "Hidden Seeker", description: "Discovered the secret achievements page.", difficulty: "Easy" },
+    { id: 1, icon: <Search size={26} />, title: "Hidden Seeker", description: "Discovered the secret achievements page.", difficulty: "Medium" },
     { id: 2, icon: <Eye size={26} />, title: "Recruiter’s Eye", description: "You downloaded the resume.", difficulty: "Easy" },
-    { id: 3, icon: <Map size={26} />, title: "Map Explorer", description: "Explored all sections of the site map.", difficulty: "Medium" },
     { id: 4, icon: <Type size={26} />, title: "I Can Type", description: "Completed the typing challenge.", difficulty: "Easy" },
-    { id: 5, icon: <Zap size={26} />, title: "Like the Wind", description: "Completed typing challenge under 4 seconds.", difficulty: "Medium" },
+    { id: 3, icon: <Map size={26} />, title: "Curious Explorer", description: "Explored my profile.", difficulty: "Easy" },
+    { id: 5, icon: <Zap size={26} />, title: "Like the Wind", description: "Completed typing challenge under 9 seconds.", difficulty: "Hard" },
+    { id: 8, icon: <Linkedin size={26} />, title: "Network Builder", description: "Visited my LinkedIn page.", difficulty: "Medium" },
     { id: 6, icon: <Award size={26} />, title: "Master Collector", description: "Unlocked all achievements.", difficulty: "Hard" },
+
 ];
 
 export const unlockAchievement = (id) => {
@@ -23,10 +24,12 @@ export const unlockAchievement = (id) => {
         data.unlocked.push(id);
         data.lastUpdated = Date.now();
         localStorage.setItem("achievements", JSON.stringify(data));
-        return true; // newly unlocked
+        return true;
     }
-    return false; // already unlocked
+    return false;
 };
+
+
 
 const Achievements = () => {
     const [unlocked, setUnlocked] = useState([]);
@@ -58,6 +61,23 @@ const Achievements = () => {
             return () => clearTimeout(hideTimer);
         }
     }, []);
+
+    // 🏆 ADD THIS EFFECT HERE
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("achievements"));
+        if (data) {
+            const allUnlocked = achievementsData
+                .map(a => a.id)
+                .every(id => data.unlocked.includes(id));
+
+            if (allUnlocked && !data.unlocked.includes(6)) {
+                unlockAchievement(6);
+                setShowNoti(true);
+                const updated = JSON.parse(localStorage.getItem("achievements"));
+                setUnlocked(updated?.unlocked || []);
+            }
+        }
+    }, [unlocked]);
 
     return (
         <div className="achievements-page">

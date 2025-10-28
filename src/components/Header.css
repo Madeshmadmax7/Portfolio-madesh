@@ -198,6 +198,17 @@ body {
     border: 1px solid #444;
 }
 
+.hero-image.blurred img {
+    filter: blur(8px) brightness(0.7);
+    transition: filter 0.4s ease;
+}
+
+
+.hero-image:not(.blurred) img {
+    filter: blur(0);
+}
+
+
 @media (max-width: 768px) {
     .header-links {
         display: none;

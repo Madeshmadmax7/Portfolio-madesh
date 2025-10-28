@@ -1,4 +1,3 @@
-// src/components/Home.js
 import React from "react";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
@@ -6,6 +5,7 @@ import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 import ContactAndGame from "../components/ContactAndGame";
 import GithubContributionCard from "../components/GithubContributionCard";
+import TypingChallenge from "../components/TypingChallenge";
 
 const Home = () => {
     return (
@@ -16,6 +16,7 @@ const Home = () => {
             </section>
             <section id="pulse">
                 <GithubContributionCard />
+                <TypingChallenge/>
             </section>
             <section id="skills">
                 <Skills />
