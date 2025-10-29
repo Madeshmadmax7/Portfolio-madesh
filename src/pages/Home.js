@@ -22,6 +22,9 @@ const Home = () => {
                 <Skills />
             </section>
             <section id="projects">
+                <br></br>
+                <br></br>
+                <br></br>
                 <Projects />
             </section>
             <section id="contact">

@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Award, Map, Search, Type, Zap, Eye , Linkedin } from "lucide-react";
+import {
+    Search,
+    Eye,
+    Type,
+    Map,
+    Zap,
+    Award,
+    Linkedin,
+    Terminal,
+    MousePointer,
+    Volume2,
+    Brain
+} from "lucide-react";
 import "./Achievements.css";
 import AchievementNotification from "./AchievementNotification";
 
@@ -10,10 +22,14 @@ const achievementsData = [
     { id: 3, icon: <Map size={26} />, title: "Curious Explorer", description: "Explored my profile.", difficulty: "Easy" },
     { id: 5, icon: <Zap size={26} />, title: "Like the Wind", description: "Completed typing challenge under 9 seconds.", difficulty: "Hard" },
     { id: 8, icon: <Linkedin size={26} />, title: "Network Builder", description: "Visited my LinkedIn page.", difficulty: "Medium" },
+    { id: 9, icon: <Terminal size={26} />, title: "Debugger’s Intuition", description: "You opened console or inspected something.", difficulty: "Medium" },
+    { id: 7, icon: <MousePointer size={26} />, title: "Pixel Wanderer", description: "You explored every corner of the interface.", difficulty: "Easy" },
+    { id: 10, icon: <Volume2 size={26} />, title: "Noise Creator", description: "You triggered every sound or effect available.", difficulty: "Medium" },
+    { id: 11, icon: <Brain size={26} />, title: "Matrix Explorer", description: "You discovered the hidden Matrix terminal.", difficulty: "Hard" },
     { id: 6, icon: <Award size={26} />, title: "Master Collector", description: "Unlocked all achievements.", difficulty: "Hard" },
-
 ];
 
+// 🔓 Unlock helper
 export const unlockAchievement = (id) => {
     const data = JSON.parse(localStorage.getItem("achievements")) || {
         unlocked: [],
@@ -28,8 +44,6 @@ export const unlockAchievement = (id) => {
     }
     return false;
 };
-
-
 
 const Achievements = () => {
     const [unlocked, setUnlocked] = useState([]);
@@ -49,12 +63,11 @@ const Achievements = () => {
     }, []);
 
     useEffect(() => {
-        // unlock when visiting page
+        // unlock when visiting achievements page
         const isNew = unlockAchievement(1);
         const data = JSON.parse(localStorage.getItem("achievements"));
         setUnlocked(data?.unlocked || []);
 
-        // show notification only if newly unlocked
         if (isNew) {
             setTimeout(() => setShowNoti(true), 400);
             const hideTimer = setTimeout(() => setShowNoti(false), 4000);
@@ -62,13 +75,13 @@ const Achievements = () => {
         }
     }, []);
 
-    // 🏆 ADD THIS EFFECT HERE
+    // 🏆 Check for full completion (Master Collector)
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("achievements"));
         if (data) {
             const allUnlocked = achievementsData
-                .map(a => a.id)
-                .every(id => data.unlocked.includes(id));
+                .map((a) => a.id)
+                .every((id) => data.unlocked.includes(id));
 
             if (allUnlocked && !data.unlocked.includes(6)) {
                 unlockAchievement(6);
@@ -114,7 +127,7 @@ const Achievements = () => {
 
             {showNoti && (
                 <AchievementNotification
-                    title="Achievement Unlocked"
+                    title="Achievement Unlocked!"
                     description="Hidden Seeker"
                     onClose={() => setShowNoti(false)}
                 />

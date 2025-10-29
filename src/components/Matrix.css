@@ -1,0 +1,195 @@
+.matrix-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.matrix-container.light {
+    background: #000000;
+    color: #000;
+}
+
+.matrix-container.dark {
+    background: #000000;
+    color: #d4d4d4;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+    background: #f5f5f5;
+}
+
+/* Terminal Window */
+.terminal-window {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.terminal-window.light {
+    background: #ffffff;
+}
+
+.terminal-window.dark {
+    background: #1e1e1e;
+}
+
+/* Header */
+.terminal-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.terminal-header.light {
+    background: #f6f6f6;
+}
+
+.terminal-header.dark {
+    background: #2d2d2d;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+    z-index: 1;
+}
+
+.control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.control-close {
+    background: #ff5f57;
+}
+
+.control-minimize {
+    background: #febc2e;
+}
+
+.control-maximize {
+    background: #28c840;
+}
+
+.terminal-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    font-weight: 500;
+    color: #888;
+}
+
+/* Body */
+.terminal-body {
+    padding: 20px;
+    min-height: 500px;
+    font-family: "Monaco", "Menlo", "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+}
+
+.terminal-line {
+    white-space: pre-wrap;
+    word-break: keep-all;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.prompt {
+    margin-right: 8px;
+    user-select: none;
+    color: #4ec9b0;
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    
+}
+
+/* .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    margin-left: 2px;
+    background: currentColor;
+    animation: blink 1s step-end infinite;
+} */
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Scrollbar */
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
