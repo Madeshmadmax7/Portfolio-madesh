@@ -1,72 +1,112 @@
-// src/components/Header.js
 import React, { useState, useEffect } from "react";
 import "./Header.css";
 import meLego from "../profile-images/menewblue.jpg";
 import { unlockAchievement } from "./Achievements";
 import AchievementNotification from "./AchievementNotification";
+import { Music4 } from "lucide-react";
+
 
 const Header = () => {
     const [showBlurNotif, setShowBlurNotif] = useState(false);
     const [showResumeNotif, setShowResumeNotif] = useState(false);
     const [showLinkedinNotif, setShowLinkedinNotif] = useState(false);
+    const [showMusicNotif, setShowMusicNotif] = useState(false);
 
     const [isBlurred, setIsBlurred] = useState(true);
-
     const [blurUnlocked, setBlurUnlocked] = useState(false);
     const [resumeUnlocked, setResumeUnlocked] = useState(false);
     const [linkedinVisited, setLinkedinVisited] = useState(false);
+
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [songUnlocked, setSongUnlocked] = useState(false);
+
+    const songs = [
+        "/songs/song1.mp3",
+        "/songs/song2.mp3"
+    ];
 
     useEffect(() => {
         const blurCleared = localStorage.getItem("blurCleared");
         if (blurCleared === "true") {
             setIsBlurred(false);
             setBlurUnlocked(true);
-        } else {
-            setIsBlurred(true); // restore blur if missing
-            setBlurUnlocked(false);
+        }
+
+        // 🔊 Restore global audio state if exists
+        if (window.globalAudio) {
+            setIsPlaying(!window.globalAudio.paused);
         }
     }, []);
 
-    // ✅ Handle blur unlock
     const handleHover = () => {
         if (!blurUnlocked) {
             setIsBlurred(false);
             setBlurUnlocked(true);
-            unlockAchievement(3); // Curious Explorer
+            unlockAchievement(3);
             setShowBlurNotif(true);
             localStorage.setItem("blurCleared", "true");
         }
     };
 
-    // ✅ Handle resume click
     const handleResumeClick = () => {
         if (!resumeUnlocked) {
             setResumeUnlocked(true);
-            unlockAchievement(2); // Recruiter’s Eye
+            unlockAchievement(2);
             setShowResumeNotif(true);
         }
     };
 
-    // ✅ Handle LinkedIn visit
     const handleLinkedinVisit = () => {
         if (!linkedinVisited) {
             setLinkedinVisited(true);
-            unlockAchievement(8); // Network Builder
+            unlockAchievement(8);
             setShowLinkedinNotif(true);
         }
     };
 
-    // ✅ Hide notification automatically
+    // 🎵 Persistent music control
+    const handleMusicClick = () => {
+        // Initialize global audio player if not present
+        if (!window.globalAudio) {
+            window.globalAudio = new Audio(songs[0]);
+            window.globalAudio.volume = 0.5;
+            window.globalAudio.currentIndex = 0;
+            window.globalAudio.onended = () => (setIsPlaying(false));
+        }
+
+        const player = window.globalAudio;
+
+        if (!isPlaying) {
+            // ▶️ Play next song in the list
+            player.currentIndex = (player.currentIndex + 1) % songs.length;
+            player.src = songs[player.currentIndex];
+            player.play();
+            setIsPlaying(true);
+
+            if (!songUnlocked) {
+                setSongUnlocked(true);
+                unlockAchievement(10);
+                setShowMusicNotif(true);
+            }
+        } else {
+            // ⏸️ Pause current song
+            player.pause();
+            setIsPlaying(false);
+        }
+    };
+
+    // 🕒 Auto-hide notifications
     useEffect(() => {
-        if (showBlurNotif || showResumeNotif || showLinkedinNotif) {
+        if (showBlurNotif || showResumeNotif || showLinkedinNotif || showMusicNotif) {
             const timer = setTimeout(() => {
                 setShowBlurNotif(false);
                 setShowResumeNotif(false);
                 setShowLinkedinNotif(false);
+                setShowMusicNotif(false);
             }, 4000);
             return () => clearTimeout(timer);
         }
-    }, [showBlurNotif, showResumeNotif, showLinkedinNotif]);
+    }, [showBlurNotif, showResumeNotif, showLinkedinNotif, showMusicNotif]);
 
     return (
         <header className="header-wrapper">
@@ -74,13 +114,29 @@ const Header = () => {
                 <div className="container hero-container">
                     <div className="hero-text">
                         <h1>
-                            Hello I’m <span className="bold">Madesh.</span>
+                            Hello I’m{" "}
+                            <span className="bold">
+                                Madesh.
+                                <span
+                                    className="music-icon"
+                                    onClick={handleMusicClick}
+                                    style={{
+                                        marginLeft: "20px",
+                                        cursor: "pointer",
+                                        color: isPlaying ? "blue" : "#ccc",
+                                    }}
+                                    title="Play / Pause music"
+                                >
+                                    <Music4 size={30} />
+                                </span>
+                            </span>
                             <br />
                             <span className="bold">
                                 Full Stack <span className="stroke-text">Developer</span>
                             </span>
                             <br />
                         </h1>
+
                         <p>
                             I’m a passionate engineering student with a focus on creating
                             seamless, full-stack solutions. I bridge the gap between great
@@ -211,7 +267,6 @@ const Header = () => {
                     onClose={() => setShowBlurNotif(false)}
                 />
             )}
-
             {showResumeNotif && (
                 <AchievementNotification
                     title="Achievement Unlocked"
@@ -219,12 +274,18 @@ const Header = () => {
                     onClose={() => setShowResumeNotif(false)}
                 />
             )}
-
             {showLinkedinNotif && (
                 <AchievementNotification
                     title="Achievement Unlocked"
                     description="Network Builder"
                     onClose={() => setShowLinkedinNotif(false)}
+                />
+            )}
+            {showMusicNotif && (
+                <AchievementNotification
+                    title="Achievement Unlocked"
+                    description="Noise Creator"
+                    onClose={() => setShowMusicNotif(false)}
                 />
             )}
         </header>

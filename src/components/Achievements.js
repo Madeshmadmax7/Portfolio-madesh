@@ -15,21 +15,22 @@ import {
 import "./Achievements.css";
 import AchievementNotification from "./AchievementNotification";
 
+// 🏅 Achievement data
 const achievementsData = [
     { id: 1, icon: <Search size={26} />, title: "Hidden Seeker", description: "Discovered the secret achievements page.", difficulty: "Medium" },
     { id: 2, icon: <Eye size={26} />, title: "Recruiter’s Eye", description: "You downloaded the resume.", difficulty: "Easy" },
-    { id: 4, icon: <Type size={26} />, title: "I Can Type", description: "Completed the typing challenge.", difficulty: "Easy" },
     { id: 3, icon: <Map size={26} />, title: "Curious Explorer", description: "Explored my profile.", difficulty: "Easy" },
+    { id: 4, icon: <Type size={26} />, title: "I Can Type", description: "Completed the typing challenge.", difficulty: "Easy" },
     { id: 5, icon: <Zap size={26} />, title: "Like the Wind", description: "Completed typing challenge under 9 seconds.", difficulty: "Hard" },
+    { id: 6, icon: <Award size={26} />, title: "Master Collector", description: "Unlocked all achievements.", difficulty: "Hard" },
+    { id: 7, icon: <MousePointer size={26} />, title: "Pixel Wanderer", description: "You explored every corner of the interface.", difficulty: "Easy" },
     { id: 8, icon: <Linkedin size={26} />, title: "Network Builder", description: "Visited my LinkedIn page.", difficulty: "Medium" },
     { id: 9, icon: <Terminal size={26} />, title: "Debugger’s Intuition", description: "You opened console or inspected something.", difficulty: "Medium" },
-    { id: 7, icon: <MousePointer size={26} />, title: "Pixel Wanderer", description: "You explored every corner of the interface.", difficulty: "Easy" },
     { id: 10, icon: <Volume2 size={26} />, title: "Noise Creator", description: "You triggered every sound or effect available.", difficulty: "Medium" },
     { id: 11, icon: <Brain size={26} />, title: "Matrix Explorer", description: "You discovered the hidden Matrix terminal.", difficulty: "Hard" },
-    { id: 6, icon: <Award size={26} />, title: "Master Collector", description: "Unlocked all achievements.", difficulty: "Hard" },
 ];
 
-// 🔓 Unlock helper
+// 🔓 Helper — unlock an achievement
 export const unlockAchievement = (id) => {
     const data = JSON.parse(localStorage.getItem("achievements")) || {
         unlocked: [],
@@ -48,7 +49,9 @@ export const unlockAchievement = (id) => {
 const Achievements = () => {
     const [unlocked, setUnlocked] = useState([]);
     const [showNoti, setShowNoti] = useState(false);
+    const [recentUnlocked, setRecentUnlocked] = useState(null);
 
+    // 📦 Load existing data
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("achievements"));
         if (data) {
@@ -62,32 +65,36 @@ const Achievements = () => {
         }
     }, []);
 
+    // 🕵️ Unlock when visiting Achievements page
     useEffect(() => {
-        // unlock when visiting achievements page
-        const isNew = unlockAchievement(1);
+        const isNew = unlockAchievement(1); // Hidden Seeker
         const data = JSON.parse(localStorage.getItem("achievements"));
         setUnlocked(data?.unlocked || []);
 
         if (isNew) {
+            setRecentUnlocked("Hidden Seeker");
             setTimeout(() => setShowNoti(true), 400);
             const hideTimer = setTimeout(() => setShowNoti(false), 4000);
             return () => clearTimeout(hideTimer);
         }
     }, []);
 
-    // 🏆 Check for full completion (Master Collector)
+    // 🏆 Check for "Master Collector"
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("achievements"));
         if (data) {
-            const allUnlocked = achievementsData
+            const allUnlockedExceptMaster = achievementsData
+                .filter((a) => a.id !== 6) // exclude Master Collector itself
                 .map((a) => a.id)
                 .every((id) => data.unlocked.includes(id));
 
-            if (allUnlocked && !data.unlocked.includes(6)) {
+            if (allUnlockedExceptMaster && !data.unlocked.includes(6)) {
                 unlockAchievement(6);
-                setShowNoti(true);
                 const updated = JSON.parse(localStorage.getItem("achievements"));
                 setUnlocked(updated?.unlocked || []);
+                setRecentUnlocked("Master Collector");
+                setShowNoti(true);
+                setTimeout(() => setShowNoti(false), 5000);
             }
         }
     }, [unlocked]);
@@ -106,7 +113,7 @@ const Achievements = () => {
                     return (
                         <div
                             key={a.id}
-                            className={`achievement-card ${isUnlocked ? "unlocked" : "locked"}`}
+                            className={`achievement-card ${isUnlocked ? "unlocked" : "locked"} ${a.id === 6 && isUnlocked ? "glow" : ""}`}
                             title={isUnlocked ? "Unlocked!" : "Locked"}
                         >
                             <div className="achievement-icon">{a.icon}</div>
@@ -125,10 +132,10 @@ const Achievements = () => {
                 })}
             </div>
 
-            {showNoti && (
+            {showNoti && recentUnlocked && (
                 <AchievementNotification
                     title="Achievement Unlocked!"
-                    description="Hidden Seeker"
+                    description={recentUnlocked}
                     onClose={() => setShowNoti(false)}
                 />
             )}
