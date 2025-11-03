@@ -7,7 +7,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
   const [userData, setUserData] = useState(null);
   const [contributionData, setContributionData] = useState({});
   const [loading, setLoading] = useState(true);
-  const [reloadKey, setReloadKey] = useState(0); // for refresh
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     async function fetchGithubData() {

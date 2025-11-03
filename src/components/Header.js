@@ -32,7 +32,6 @@ const Header = () => {
             setBlurUnlocked(true);
         }
 
-        // 🔊 Restore global audio state if exists
         if (window.globalAudio) {
             setIsPlaying(!window.globalAudio.paused);
         }
@@ -64,9 +63,7 @@ const Header = () => {
         }
     };
 
-    // 🎵 Persistent music control
     const handleMusicClick = () => {
-        // Initialize global audio player if not present
         if (!window.globalAudio) {
             window.globalAudio = new Audio(songs[0]);
             window.globalAudio.volume = 0.5;

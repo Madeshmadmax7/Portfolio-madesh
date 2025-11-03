@@ -12,17 +12,18 @@
     letter-spacing: 0.01em;
 }
 
-
 .github-card-wrapper {
     width: 100%;
-    padding: 0.5rem 1rem 2.5rem;
+    min-height: 100vh;
+    padding: 2vw 0;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
+    align-items: center;
     background: transparent;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
+/* Center the container for all screens */
 .github-card-container {
     position: relative;
     width: 100%;
@@ -30,8 +31,12 @@
     border-radius: 1.5rem;
     overflow: hidden;
     padding: 3.5rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background: none;
 }
 
+/* Card styling */
 .github-card {
     position: relative;
     z-index: 10;
@@ -40,9 +45,10 @@
     background: rgba(0, 0, 0, 0.76);
     color: rgba(255, 255, 255, 0.98);
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* Browser Header */
+/* Header and browser UI */
 .browser-header {
     position: relative;
     display: flex;
@@ -159,28 +165,6 @@
     max-width: 400px;
 }
 
-.react-calendar-heatmap .color-empty {
-    border-radius: 3px;
-}
-
-.react-calendar-heatmap .color-scale-0,
-.react-calendar-heatmap .color-scale-1,
-.react-calendar-heatmap .color-scale-2,
-.react-calendar-heatmap .color-scale-3,
-.react-calendar-heatmap .color-scale-4 {
-    border-radius: 3px;
-    transition: transform 0.2s, outline 0.2s;
-}
-
-.react-calendar-heatmap .color-scale-0:hover,
-.react-calendar-heatmap .color-scale-1:hover,
-.react-calendar-heatmap .color-scale-2:hover,
-.react-calendar-heatmap .color-scale-3:hover,
-.react-calendar-heatmap .color-scale-4:hover {
-    transform: scale(1.15);
-    outline: 1px solid rgba(255, 255, 255, 0.25);
-}
-
 .profile-name {
     font-size: 1.25rem;
     font-weight: 600;
@@ -208,11 +192,6 @@
     align-items: center;
     gap: 0.25rem;
     white-space: nowrap;
-}
-
-.stat-icon {
-    width: 1rem;
-    height: 1rem;
 }
 
 .stat-label {
@@ -277,105 +256,18 @@
     opacity: 0.8;
 }
 
-.inspect-btn {
-    margin-left: auto;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    background: rgba(115, 115, 115, 0.15);
-    border: 1px solid transparent;
-    color: currentColor;
-    font-size: 0.875rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.125rem;
-    opacity: 0;
-    transition: all 0.2s;
-}
-
-.contributions-container:hover .inspect-btn {
-    opacity: 1;
-}
-
-.inspect-btn:hover {
-    border-color: rgba(105, 105, 105, 0.5);
-}
-
-.inspect-btn span {
-    opacity: 0.7;
-}
-
-.inspect-btn:hover span {
-    opacity: 1;
-}
-
-.chevron {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.2s;
-}
-
-.inspect-btn:hover .chevron {
-    transform: translateX(0.125rem);
-}
-
 .contribution-graph {
     position: relative;
-}
-
-.months-labels {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    margin-bottom: 0.5rem;
-    padding-left: 0;
-    font-size: 0.75rem;
-}
-
-.month-label {
-    text-align: left;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 6px;
 }
 
 .contribution-grid {
     display: flex;
     gap: 2px;
-}
-
-.contribution-column {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.contribution-cell {
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    transition: all 0.2s;
-}
-
-.contribution-cell.level-0 {
-    background: rgba(115, 115, 115, 0.15);
-}
-
-.contribution-cell.level-1 {
-    background: color-mix(in srgb, rgba(135, 231, 242, 1) 35%, rgba(115, 115, 115, 0.15));
-}
-
-.contribution-cell.level-2 {
-    background: color-mix(in srgb, rgba(135, 231, 242, 1) 60%, rgba(115, 115, 115, 0.15));
-}
-
-.contribution-cell.level-3 {
-    background: color-mix(in srgb, rgba(135, 231, 242, 1) 75%, rgba(115, 115, 115, 0.15));
-}
-
-.contribution-cell.level-4 {
-    background: rgba(135, 231, 242, 1);
-}
-
-.contribution-cell:hover {
-    transform: scale(1.2);
-    outline: 1px solid rgba(255, 255, 255, 0.3);
+    overflow-x: auto;
+    width: 100%;
 }
 
 .year-tabs {
@@ -440,28 +332,75 @@
     margin-top: 0.5rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Make heatmap grid never overflow - mobile */
+.react-calendar-heatmap,
+.contribution-grid {
+    min-width: 300px;
+    width: 100% !important;
+    max-width: 99vw !important;
+}
+
+@media (min-width: 1200px) {
     .github-card-wrapper {
-        padding: 1rem;
+        padding: 2vw 0;
     }
 
     .github-card-container {
-        padding: 1.5rem;
+        max-width: 1000px;
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
+}
+
+@media (max-width: 1024px) {
+    .github-card-container {
+        padding: 2rem 0.7rem;
+        max-width: 99vw;
+    }
+
+    .contribution-graph,
+    .contribution-grid {
+        min-width: 350px;
+        max-width: 99vw;
+    }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 768px) {
+    .github-card-wrapper {
+        padding: 0.4rem 0;
+        min-height: 0;
+        height: auto;
+    }
+
+    .github-card-container {
+        padding: 1.2rem 0.2rem;
+        max-width: 99vw;
+    }
+
+    .github-card {
+        border-radius: 1rem;
+        padding: 0.5rem 0.3rem;
+        min-width: 0;
+        margin: 0;
     }
 
     .profile-header {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 0.9rem;
+        margin-bottom: 1rem;
     }
 
     .github-stats {
         margin-left: 0;
-        margin-top: 1rem;
+        margin-top: 0.4rem;
         align-items: flex-start;
     }
 
     .contribution-grid {
         gap: 1.5px;
+        min-width: 300px;
     }
 
     .contribution-cell {
@@ -470,8 +409,54 @@
     }
 
     .github-card-container h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        color: #ffffff;
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
     }
+
+    .browser-header,
+    .card-footer {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .github-card-wrapper {
+        padding: 0.15rem 0;
+    }
+
+    .github-card-container {
+        padding: 0.6rem 2px;
+        max-width: 99vw;
+    }
+
+    .contribution-grid,
+    .contribution-graph {
+        min-width: 280px;
+        max-width: 99vw;
+    }
+
+    .year-tab {
+        font-size: 0.82rem;
+        padding: 0.28rem 0.55rem;
+    }
+}
+
+/* Optional: improve heatmap cell tap on mobile */
+.react-calendar-heatmap .color-empty,
+.react-calendar-heatmap .color-scale-0,
+.react-calendar-heatmap .color-scale-1,
+.react-calendar-heatmap .color-scale-2,
+.react-calendar-heatmap .color-scale-3,
+.react-calendar-heatmap .color-scale-4 {
+    border-radius: 3px;
+    transition: transform 0.18s, outline 0.18s;
+}
+
+.react-calendar-heatmap .color-scale-0:hover,
+.react-calendar-heatmap .color-scale-1:hover,
+.react-calendar-heatmap .color-scale-2:hover,
+.react-calendar-heatmap .color-scale-3:hover,
+.react-calendar-heatmap .color-scale-4:hover {
+    transform: scale(1.15);
+    outline: 1px solid rgba(255, 255, 255, 0.16);
 }

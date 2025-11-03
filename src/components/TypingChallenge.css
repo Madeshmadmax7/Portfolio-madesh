@@ -1,13 +1,15 @@
+/* Base Styles */
 .typing-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     background: #000;
     color: white;
     font-family: "Poppins", sans-serif;
     position: relative;
+    padding: 1rem;
 }
 
 .gif-container {
@@ -15,7 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 600px;
+    width: 100%;
+    max-width: 600px;
     min-height: 320px;
 }
 
@@ -26,7 +29,7 @@
     border-radius: 14px;
     z-index: 2;
     padding: 2rem;
-    width: 600px;
+    width: 100%;
     box-shadow: 0 0 25px rgba(0, 102, 255, 0.25);
     backdrop-filter: blur(6px);
     overflow: visible;
@@ -44,11 +47,13 @@
     animation: none;
 }
 
+/* Default GIF positions (Desktop/Laptop) */
 .gif-fear {
     left: 45px;
     top: 35px;
     transform: translate(-50%, -100%);
 }
+
 .gif-shock {
     height: 150px;
     width: 200px;
@@ -56,23 +61,26 @@
     top: 29px;
     transform: translate(-55%, -90%);
 }
+
 .gif-cheat {
     left: 30%;
     top: 50px;
     transform: translate(-48%, -110%);
 }
+
 .gif-congrats {
     right: -40px;
     top: 55px;
     transform: translate(-50%, -120%);
 }
 
-
 .typing-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .reset-hint {
@@ -91,6 +99,7 @@
     font-weight: 500;
     margin-bottom: 1rem;
     color: #eee;
+    line-height: 1.6;
 }
 
 .typing-input {
@@ -105,9 +114,398 @@
     resize: none;
     outline: none;
     transition: 0.3s;
+    font-family: "Poppins", sans-serif;
 }
 
 .typing-input:focus {
     border-color: #00b7ff;
     box-shadow: 0 0 10px rgba(0, 183, 255, 0.3);
+}
+
+/* Mobile Phones (Portrait) - 320px to 480px */
+@media screen and (max-width: 480px) {
+    .typing-page {
+        padding: 0.5rem;
+    }
+
+    .gif-container {
+        max-width: 100%;
+        min-height: 280px;
+    }
+
+    .typing-box {
+        padding: 1.25rem;
+        border-radius: 12px;
+    }
+
+    .reaction-gif {
+        width: 70px;
+    }
+
+    .gif-fear {
+        left: 20px;
+        top: 20px;
+        transform: translate(-30%, -100%);
+    }
+
+    .gif-shock {
+        height: 90px;
+        width: 120px;
+        right: 5px;
+        top: 15px;
+        transform: translate(-40%, -90%);
+    }
+
+    .gif-cheat {
+        left: 50%;
+        top: 25px;
+        transform: translate(-50%, -110%);
+    }
+
+    .gif-congrats {
+        right: -10px;
+        top: 30px;
+        transform: translate(-40%, -120%);
+    }
+
+    .typing-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .reset-hint {
+        font-size: 0.7rem;
+    }
+
+    .timer {
+        font-size: 0.9rem;
+    }
+
+    .sentence {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .typing-input {
+        height: 100px;
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+/* Mobile Phones (Landscape) and Small Tablets - 481px to 767px */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .typing-page {
+        padding: 0.75rem;
+    }
+
+    .gif-container {
+        max-width: 90%;
+        min-height: 300px;
+    }
+
+    .typing-box {
+        padding: 1.5rem;
+        border-radius: 13px;
+    }
+
+    .reaction-gif {
+        width: 85px;
+    }
+
+    .gif-fear {
+        left: 30px;
+        top: 25px;
+        transform: translate(-40%, -100%);
+    }
+
+    .gif-shock {
+        height: 110px;
+        width: 150px;
+        right: 10px;
+        top: 20px;
+        transform: translate(-50%, -90%);
+    }
+
+    .gif-cheat {
+        left: 35%;
+        top: 35px;
+        transform: translate(-50%, -110%);
+    }
+
+    .gif-congrats {
+        right: -20px;
+        top: 40px;
+        transform: translate(-45%, -120%);
+    }
+
+    .reset-hint {
+        font-size: 0.75rem;
+    }
+
+    .timer {
+        font-size: 0.95rem;
+    }
+
+    .sentence {
+        font-size: 1rem;
+    }
+
+    .typing-input {
+        height: 110px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Tablets (Portrait and Landscape) - 768px to 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .gif-container {
+        max-width: 550px;
+        min-height: 310px;
+    }
+
+    .typing-box {
+        padding: 1.75rem;
+    }
+
+    .reaction-gif {
+        width: 95px;
+    }
+
+    .gif-fear {
+        left: 40px;
+        top: 30px;
+        transform: translate(-45%, -100%);
+    }
+
+    .gif-shock {
+        height: 130px;
+        width: 175px;
+        right: 5%;
+        top: 25px;
+        transform: translate(-52%, -90%);
+    }
+
+    .gif-cheat {
+        left: 32%;
+        top: 45px;
+        transform: translate(-50%, -110%);
+    }
+
+    .gif-congrats {
+        right: -30px;
+        top: 50px;
+        transform: translate(-48%, -120%);
+    }
+
+    .reset-hint {
+        font-size: 0.8rem;
+    }
+
+    .sentence {
+        font-size: 1.05rem;
+    }
+
+    .typing-input {
+        height: 115px;
+    }
+}
+
+/* Laptops and Small Desktops - 1025px to 1440px */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .gif-container {
+        max-width: 600px;
+        min-height: 320px;
+    }
+
+    .typing-box {
+        padding: 2rem;
+    }
+
+    /* Default GIF positions work well here */
+}
+
+/* Large Monitors - 1441px to 1920px */
+@media screen and (min-width: 1441px) and (max-width: 1920px) {
+    .gif-container {
+        max-width: 700px;
+        min-height: 360px;
+    }
+
+    .typing-box {
+        padding: 2.25rem;
+    }
+
+    .reaction-gif {
+        width: 125px;
+    }
+
+    .gif-fear {
+        left: 50px;
+        top: 40px;
+        transform: translate(-50%, -100%);
+    }
+
+    .gif-shock {
+        height: 170px;
+        width: 230px;
+        right: -2%;
+        top: 32px;
+        transform: translate(-55%, -90%);
+    }
+
+    .gif-cheat {
+        left: 30%;
+        top: 55px;
+        transform: translate(-48%, -110%);
+    }
+
+    .gif-congrats {
+        right: -50px;
+        top: 60px;
+        transform: translate(-50%, -120%);
+    }
+
+    .reset-hint {
+        font-size: 0.9rem;
+    }
+
+    .timer {
+        font-size: 1.1rem;
+    }
+
+    .sentence {
+        font-size: 1.2rem;
+    }
+
+    .typing-input {
+        height: 130px;
+        font-size: 1.05rem;
+    }
+}
+
+/* TV/4K Monitors - 1921px and above */
+@media screen and (min-width: 1921px) {
+    .gif-container {
+        max-width: 850px;
+        min-height: 420px;
+    }
+
+    .typing-box {
+        padding: 2.5rem;
+        border-radius: 16px;
+    }
+
+    .reaction-gif {
+        width: 150px;
+    }
+
+    .gif-fear {
+        left: 60px;
+        top: 50px;
+        transform: translate(-50%, -100%);
+    }
+
+    .gif-shock {
+        height: 200px;
+        width: 280px;
+        right: -3%;
+        top: 40px;
+        transform: translate(-55%, -90%);
+    }
+
+    .gif-cheat {
+        left: 30%;
+        top: 65px;
+        transform: translate(-48%, -110%);
+    }
+
+    .gif-congrats {
+        right: -60px;
+        top: 70px;
+        transform: translate(-50%, -120%);
+    }
+
+    .typing-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .reset-hint {
+        font-size: 1rem;
+    }
+
+    .timer {
+        font-size: 1.3rem;
+    }
+
+    .sentence {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .typing-input {
+        height: 150px;
+        font-size: 1.2rem;
+        padding: 15px;
+        border-radius: 12px;
+    }
+}
+
+/* Extra small devices (very small phones) */
+@media screen and (max-width: 320px) {
+    .typing-box {
+        padding: 1rem;
+    }
+
+    .reaction-gif {
+        width: 60px;
+    }
+
+    .gif-shock {
+        height: 80px;
+        width: 100px;
+    }
+
+    .reset-hint {
+        font-size: 0.65rem;
+    }
+
+    .sentence {
+        font-size: 0.85rem;
+    }
+
+    .typing-input {
+        height: 90px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .typing-page {
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+
+    .gif-container {
+        min-height: 240px;
+    }
+
+    .typing-box {
+        padding: 1.25rem;
+    }
+
+    .typing-input {
+        height: 80px;
+    }
+
+    .reaction-gif {
+        width: 80px;
+    }
+
+    .gif-shock {
+        height: 100px;
+        width: 135px;
+    }
 }
