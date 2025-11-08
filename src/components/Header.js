@@ -11,6 +11,7 @@ const Header = () => {
     const [showResumeNotif, setShowResumeNotif] = useState(false);
     const [showLinkedinNotif, setShowLinkedinNotif] = useState(false);
     const [showMusicNotif, setShowMusicNotif] = useState(false);
+    const [isHighlighted, setIsHighlighted] = useState(false);
 
     const [isBlurred, setIsBlurred] = useState(true);
     const [blurUnlocked, setBlurUnlocked] = useState(false);
@@ -128,20 +129,25 @@ const Header = () => {
                                 </span>
                             </span>
                             <br />
-                            <span className="bold">
+                            <span
+                                className="bold highlight-trigger"
+                                onClick={() => setIsHighlighted(!isHighlighted)}
+                            >
                                 Full Stack <span className="stroke-text">Developer</span>
                             </span>
+
                             <br />
                         </h1>
 
-                        <p>
-                            I’m a passionate engineering student with a focus on creating
-                            seamless, full-stack solutions. I bridge the gap between great
-                            design and robust functionality, building user-centered
-                            applications that are both intuitive and efficient.
+                        <p className={`hero-description ${isHighlighted ? "highlighted" : ""}`}>
+                            I’m a passionate <span className="desc-key">engineering student</span> with a focus on <span className="desc-key">creating</span>, 
+                            seamless, <span className="desc-key">full-stack solutions</span>. I bridge the gap between <span className="desc-key">great
+                            design</span> and <span className="desc-key"> robust functionality</span> ,
+                            <span className="desc-key">  building user-centered</span> applications that are both
+                            intuitive and efficient.
                         </p>
 
-                        {/* --- Social Links --- */}
+
                         <div className="social-icons">
                             <a
                                 href="https://github.com/Madeshmadmax7"

@@ -92,6 +92,7 @@ body {
     color: #aaaaaa;
     margin-bottom: 1.5rem;
     max-width: 500px;
+    line-height: 23px;
 }
 
 .social-icons {
@@ -203,6 +204,42 @@ body {
     transition: filter 0.4s ease;
 }
 
+.desc-key {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hero-description .desc-key::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -4px;
+    right: -4px;
+    background: rgba(0, 255, 247, 0.15);
+    border: 1px solid rgba(0, 255, 242, 0.4);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+}
+
+
+.hero-description.highlighted .desc-key::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.hero-description.highlighted .desc-key {
+    color: #cdfffb;
+    text-shadow: 0 0 8px rgba(150, 255, 250, 0.6);
+}
+
+.highlight-trigger {
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
 
 .hero-image:not(.blurred) img {
     filter: blur(0);

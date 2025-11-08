@@ -481,7 +481,6 @@
     }
 }
 
-/* Landscape orientation adjustments */
 @media screen and (max-height: 600px) and (orientation: landscape) {
     .typing-page {
         justify-content: flex-start;

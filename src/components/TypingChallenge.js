@@ -104,6 +104,7 @@ const TypingChallenge = () => {
 
     return (
         <div className="typing-page">
+            <h6 className="h6">Start Typing</h6>
             <div className="gif-container">
                 {gifSrc && (
                     <img

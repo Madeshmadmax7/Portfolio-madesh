@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Gift } from "lucide-react";
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrophy } from "@fortawesome/free-solid-svg-icons";
 
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
@@ -134,13 +133,7 @@ function AppContent() {
               }
             />
           </Routes>
-
-          <FontAwesomeIcon
-            icon={faTrophy}
-            className="floating-trophy"
-            onClick={handleTrophyClick}
-          />
-
+          <Gift className="floating-treasure" onClick={handleTrophyClick} />
           {notification && (
             <AchievementNotification
               title={notification.title}
