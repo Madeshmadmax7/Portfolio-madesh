@@ -1,4 +1,4 @@
-.achievement-noti {
+/* .achievement-noti {
     position: fixed;
     bottom: 60px;
     right: -400px;
@@ -18,9 +18,9 @@
     right: -400px;
     opacity: 0;
     transform: translateX(20px);
-}
+} */
 
-/* .achievement-noti {
+.achievement-noti {
     position: fixed;
     bottom: -100px;
     left: 50%;
@@ -40,7 +40,7 @@
     bottom: -100px;
     opacity: 0;
     transform: translateX(-50%) translateY(20px);
-} */
+} 
 
 
 .noti-content {
