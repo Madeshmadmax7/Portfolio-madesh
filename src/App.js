@@ -10,7 +10,6 @@ import MiniNavbar from "./components/MiniNavbar";
 import AchievementNotification from "./components/AchievementNotification";
 import Matrix from "./pages/Matrix";
 
-import "./App.css";
 
 function AppContent() {
   const [loading, setLoading] = useState(true);

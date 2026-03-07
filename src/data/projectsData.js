@@ -10,8 +10,39 @@ import img9 from '../project-images/9.png';
 import img10 from '../project-images/10.png';
 import img11 from '../project-images/11.png';
 import img12 from '../project-images/12.png';
+import img13 from '../project-images/13.png';
+import img14 from '../project-images/14.png';
+import img15 from '../project-images/15.png';
 
 const projectsData = [
+    {
+        title: 'Polaris',
+        desc: 'An AI-powered productivity system that analyzes YouTube content using NLP, tracks study behavior through a browser extension, and blocks distractions to keep learning focused.',
+        src: img13,
+        github: 'https://github.com/Madeshmadmax7/polaris-full',
+        live: 'https://polaris-planner.vercel.app',
+        inProgress: true,
+
+    },
+    {
+        title: 'Mythos AI',
+        desc: 'An AI-powered mythology exploration platform that generates stories, explanations, and insights about global mythologies using intelligent prompts and NLP.',
+        src: img15,
+        github: 'https://github.com/Madeshmadmax7/mythos-ai',
+        live: 'https://mythos-ai.vercel.app',
+        inProgress: true,
+
+    },
+    {
+        title: 'DocLink',
+        desc: 'A medical consultation platform that connects patients and doctors with features like appointment booking, health services information, and real-time video consultation.',
+        src: img14,
+        github: 'https://github.com/Madeshmadmax7/doclink',
+        live: 'https://doclink.vercel.app',
+        inProgress: true,
+
+    },
+
     {
         title: 'Monastery360',
         desc: 'Built an immersive 360° virtual tour PWA to digitally preserve and showcase Sikkim’s monasteries. Users can explore sites virtually, view digital archives of murals and manuscripts, and interact with hotspots for cultural insights. Developed with React, Vite, Tailwind, A-Frame, and Pannellum, the app works offline for accessibility in remote regions, supporting tourism, education, and heritage preservation.',
@@ -94,7 +125,7 @@ const projectsData = [
         desc: 'A visually engaging project showcasing planet-related content with interactive features for users.',
         src: img6,
         github: 'https://github.com/Madeshmadmax7/Planet-Earth-Website',
-        live: 'https://planet-earth-iumuxjrv7-madeshs-projects-9efc3cf2.vercel.app/main.html'
+        live: 'https://planet-earth-iumuxjrv7-madeshs-projects-9efc3cf2.vercel.app/main.html',
     },
 ];
 

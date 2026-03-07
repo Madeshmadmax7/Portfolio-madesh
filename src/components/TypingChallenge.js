@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./TypingChallenge.css";
 import { unlockAchievement } from "./Achievements";
 import AchievementNotification from "./AchievementNotification";
 
@@ -103,30 +102,35 @@ const TypingChallenge = () => {
     };
 
     return (
-        <div className="typing-page">
-            <h6 className="h6">Start Typing</h6>
-            <div className="gif-container">
-                {gifSrc && (
-                    <img
-                        src={gifSrc}
-                        alt="reaction"
-                        className={`reaction-gif ${isCongrats ? "stay" : ""} ${getGifClass(gifSrc)}`}
-                    />
+        <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white p-4 font-['Poppins',sans-serif]">
+            <h6 className="font-['Exo_2',sans-serif] text-[2rem] text-white font-bold text-center mb-8 mt-2">Start Typing</h6>
+            <div className="relative w-full max-w-[600px] pt-[100px]">
+                {gifSrc === fearGif && (
+                    <img src={gifSrc} alt="reaction" className="reaction-gif gif-fear absolute top-3 left-4 z-[0] pointer-events-none w-[110px] h-auto" />
                 )}
-                <div className="typing-box">
-                    <div className="typing-header">
-                        <small className="reset-hint">
+                {gifSrc === cheatGif && (
+                    <img src={gifSrc} alt="reaction" className="reaction-gif gif-cheat absolute top-3 left-60 z-[0] pointer-events-none w-[110px] h-auto" />
+                )}
+                {gifSrc === shockGif && (
+                    <img src={gifSrc} alt="reaction" className="reaction-gif gif-shock absolute top-2 left-60 z-[0] pointer-events-none w-[150px] h-[100px]" />
+                )}
+                {gifSrc === congratulateGif && (
+                    <img src={gifSrc} alt="reaction" className="reaction-gif gif-congrats stay absolute top-[-10px] right-4 z-[0] pointer-events-none w-[110px] h-auto" />
+                )}
+                <div className="relative bg-[rgba(20,20,20,0.8)] border-2 border-[rgba(0,102,255,0.6)] rounded-[14px] z-[2] p-8 w-full [box-shadow:0_0_25px_rgba(0,102,255,0.25)] [backdrop-filter:blur(6px)]">
+                    <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
+                        <small className="text-[0.85rem] text-[#bbb]">
                             Press <strong>Shift + A</strong> to restart
                         </small>
-                        <div className="timer">{elapsed}s</div>
+                        <div className="text-base text-[#00b7ff] font-semibold">{elapsed}s</div>
                     </div>
-                    <p className="sentence">{sentence}</p>
+                    <p className="text-[1.1rem] font-medium mb-4 text-[#eee] leading-[1.6]">{sentence}</p>
                     <textarea
                         value={input}
                         onChange={handleChange}
                         onPaste={handlePaste}
                         placeholder="Start typing here..."
-                        className="typing-input"
+                        className="typing-input w-full h-[120px] bg-[#111] text-white border-2 border-[rgba(0,102,255,0.5)] rounded-[10px] p-[10px] text-base resize-none outline-none transition-[border,box-shadow] duration-300 font-['Poppins',sans-serif]"
                         spellCheck="false"
                         disabled={finished && !pasted}
                     />

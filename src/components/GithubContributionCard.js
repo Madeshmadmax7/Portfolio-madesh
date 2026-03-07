@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import GitHubCalendar from "react-github-contribution-calendar";
-import './GithubContributionCard.css';
 
 const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
@@ -125,26 +124,25 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
     setReloadKey(prev => prev + 1);
   };
 
-  if (loading || !userData) return <div className="github-card-wrapper">Loading...</div>;
+  if (loading || !userData) return <div className="w-full min-h-screen flex justify-center items-center bg-transparent">Loading...</div>;
 
   return (
     <>
-      <div className="github-card-wrapper">
-        <div className="github-card-container">
-          <br></br>
-          <h6 className="h6">Heat Map</h6>
-          <div className="github-card">
+      <div className="w-full min-h-screen pt-[100px] pb-[80px] flex justify-center items-center bg-transparent">
+        <div className="relative w-full max-w-[925px] rounded-[1.5rem] overflow-hidden px-[2.5rem] pb-[3.5rem] mx-auto box-border">
+          <h6 className="font-['Exo_2',sans-serif] text-[2rem] text-white font-bold text-center mt-20 mb-8 tracking-[0.01em]">Heat Map</h6>
+          <div className="relative z-[10] rounded-[1rem] border-2 border-double border-[rgba(105,105,105,0.5)] bg-[rgba(0,0,0,0.76)] text-[rgba(255,255,255,0.98)] overflow-hidden box-border">
             {/* Browser Header */}
-            <div className="browser-header">
-              <div className="browser-dots">
-                <div className="dot dot-red"></div>
-                <div className="dot dot-yellow"></div>
-                <div className="dot dot-green"></div>
+            <div className="browser-header relative flex items-center h-14 px-6 gap-2">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-[rgb(232,106,94)]"></div>
+                <div className="w-4 h-4 rounded-full bg-[rgb(241,190,80)]"></div>
+                <div className="w-4 h-4 rounded-full bg-[rgb(97,196,84)]"></div>
               </div>
-              <div className="browser-nav">
+              <div className="flex items-center px-4 opacity-70">
                 {/* ← Prev Year */}
                 <svg
-                  className="nav-icon"
+                  className="w-5 h-5"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -155,7 +153,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                   <path d="m15 18-6-6 6-6"></path>
                 </svg>
                 <svg
-                  className="nav-icon"
+                  className="w-5 h-5"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -166,16 +164,16 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                   <path d="m9 18 6-6-6-6"></path>
                 </svg>
               </div>
-              <div className="browser-url" style={{ cursor: "pointer" }}>
-                <svg className="url-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between gap-2 min-w-[290px] py-1 px-2 rounded-lg border-2 border-[rgba(105,105,105,0.3)] bg-[rgba(115,115,115,0.15)]" style={{ cursor: "pointer" }}>
+                <svg className="w-3.5 h-3.5 opacity-70" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <div className="url-text" style={{ flex: 1, textAlign: "center" }} onClick={handleOpenGithub}>
+                <div className="text-xs opacity-70" style={{ flex: 1, textAlign: "center" }} onClick={handleOpenGithub}>
                   github.com/{userData.username}
                 </div>
                 <svg
-                  className="url-icon"
+                  className="w-3.5 h-3.5 opacity-70"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -187,9 +185,9 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                   <path d="M21 3v5h-5"></path>
                 </svg>
               </div>
-              <div className="browser-actions">
+              <div className="ml-auto flex items-center gap-3 opacity-70">
                 <div
-                  className="action-btn"
+                  className="cursor-pointer"
                   style={{ cursor: "pointer" }}
                   onClick={async () => {
                     const githubURL = "https://github.com/Madeshmadmax7";
@@ -210,7 +208,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                   }}
                 >
                   <svg
-                    className="action-icon"
+                    className="w-4 h-4"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -222,14 +220,14 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                   </svg>
                 </div>
                 <div
-                  className="action-btn"
+                  className="cursor-pointer"
                   onClick={() =>
                     window.open("https://github.com/login?return_to=%2FMadeshmadmax7", "_blank")
                   }
                   style={{ cursor: "pointer" }}
                 >
                   <svg
-                    className="action-icon"
+                    className="w-4 h-4"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -240,7 +238,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                   </svg>
                 </div>
                 <div
-                  className="action-btn"
+                  className="cursor-pointer"
                   style={{ cursor: "pointer" }}
                   onClick={async () => {
                     await navigator.clipboard.writeText("https://github.com/Madeshmadmax7");
@@ -248,7 +246,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                   }}
                 >
                   <svg
-                    className="action-icon"
+                    className="w-4 h-4"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -261,52 +259,52 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
               </div>
             </div>
 
-            <div className="profile-section">
-              <div className="profile-header">
-                <div className="avatar-container">
-                  <img src={userData.avatar} alt={userData.name} className="avatar" />
+            <div className="px-6 pt-2 pb-6">
+              <div className="profile-header flex w-full items-start mb-6">
+                <div className="mr-4 shrink-0">
+                  <img src={userData.avatar} alt={userData.name} className="w-20 h-20 rounded-full bg-[rgba(115,115,115,0.15)]" />
                 </div>
-                <div className="profile-info">
-                  <div className="profile-name">{userData.name}</div>
-                  <div className="profile-details">
-                    <span className="username">@{userData.username}</span>
-                    <span className="dot">·</span>
-                    <span className="stat">
+                <div className="flex-1 flex flex-col gap-1 max-w-[400px]">
+                  <div className="text-xl font-semibold">{userData.name}</div>
+                  <div className="flex items-center gap-1 text-sm flex-wrap">
+                    <span className="flex items-center">@{userData.username}</span>
+                    <span className="mx-1">·</span>
+                    <span className="flex items-center gap-1 whitespace-nowrap">
                       <span>{userData.followers}</span>
-                      <span className="stat-label">followers</span>
+                      <span className="opacity-70">followers</span>
                     </span>
-                    <span className="dot">·</span>
-                    <span className="stat">
+                    <span className="mx-1">·</span>
+                    <span className="flex items-center gap-1 whitespace-nowrap">
                       <span>{userData.following}</span>
-                      <span className="stat-label">following</span>
+                      <span className="opacity-70">following</span>
                     </span>
                   </div>
-                  <div className="bio">{userData.bio}</div>
+                  <div className="text-sm opacity-70 leading-[1.4]">{userData.bio}</div>
                 </div>
-                <div className="github-stats">
-                  <a href={`https://github.com/${userData.username}`} target="_blank" rel="noopener noreferrer" className="github-link">
-                    <svg className="github-icon" viewBox="0 0 24 24">
+                <div className="github-stats ml-auto shrink-0 flex flex-col items-end gap-0.5 text-xs">
+                  <a href={`https://github.com/${userData.username}`} target="_blank" rel="noopener noreferrer" className="pb-2 text-inherit no-underline">
+                    <svg className="w-9 h-9" viewBox="0 0 24 24">
                       <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z" fill="currentcolor" fillRule="evenodd" clipRule="evenodd"></path>
                     </svg>
                   </a>
-                  <div className="commits-stat">{userData.totalCommits} Commits</div>
-                  <div className="years-stat">{userData.yearsActive} Years</div>
+                  <div className="opacity-70">{userData.totalCommits} Commits</div>
+                  <div className="opacity-70">{userData.yearsActive} Years</div>
                 </div>
               </div>
 
               {/* Contributions */}
-              <div className="contributions-container">
-                <div className="year-selector">
-                  <div className="year-info">
-                    <span className="year-label">{selectedYear}:</span>
-                    <span className="contributions-count">
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center mb-2">
+                  <div className="text-sm flex gap-2">
+                    <span className="font-medium mr-2">{selectedYear}:</span>
+                    <span className="opacity-80">
                       {contributionData[selectedYear]?.total || 0} Contributions
                     </span>
                   </div>
                 </div>
 
-                <div className="contribution-graph">
-                  <div className="contribution-grid" style={{ overflowX: "auto" }}>
+                <div className="relative w-full overflow-x-auto pb-[6px]">
+                  <div className="flex gap-0.5 overflow-x-auto w-full" style={{ overflowX: "auto" }}>
                     <GitHubCalendar
                       values={Object.fromEntries(
                         Object.values(contributionData[selectedYear]?.weeks || [])
@@ -335,7 +333,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
                     .map((year) => (
                       <button
                         key={year}
-                        className={`year-tab ${selectedYear === parseInt(year) ? "active" : ""}`}
+                        className={`py-2 px-4 rounded text-sm cursor-pointer transition-all duration-200 ${selectedYear === parseInt(year) ? "opacity-100 bg-[rgba(135,231,242,0.2)] border border-[rgba(135,231,242,0.5)]" : "opacity-60 bg-[rgba(115,115,115,0.15)] border border-transparent hover:opacity-80"}`}
                         onClick={() => setSelectedYear(parseInt(year))}
                       >
                         {year}
@@ -345,7 +343,7 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
               </div>
             </div>
 
-            <div className="card-footer">
+            <div className="card-footer border-t border-t-[rgba(105,105,105,0.25)] py-3 px-6 flex gap-2 items-center justify-end text-xs opacity-40">
               Crafted with
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" role="img">
                 <rect x="2" y="5" width="20" height="12" rx="1.5" ry="1.5" />

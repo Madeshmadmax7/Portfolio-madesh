@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./Header.css";
 import meLego from "../profile-images/menewblue.jpg";
 import { unlockAchievement } from "./Achievements";
 import AchievementNotification from "./AchievementNotification";
@@ -107,21 +106,22 @@ const Header = () => {
     }, [showBlurNotif, showResumeNotif, showLinkedinNotif, showMusicNotif]);
 
     return (
-        <header className="header-wrapper">
-            <section className="hero-section">
-                <div className="container hero-container">
-                    <div className="hero-text">
-                        <h1>
-                            Hello I’m{" "}
-                            <span className="bold">
+        <header>
+            <section className="min-h-screen pt-[80px] flex items-center">
+                <div className="w-full px-[60px] flex items-center justify-between flex-wrap gap-8">
+                    <div className="flex-1 min-w-[300px]">
+                        <h1 className="text-[2.5rem] leading-[1.4] mb-4 font-bold">
+                            Hello I'm{" "}
+                            <span className="font-bold">
                                 Madesh.
                                 <span
-                                    className="music-icon"
                                     onClick={handleMusicClick}
                                     style={{
                                         marginLeft: "20px",
                                         cursor: "pointer",
                                         color: isPlaying ? "blue" : "#ccc",
+                                        display: "inline-block",
+                                        verticalAlign: "middle",
                                     }}
                                     title="Play / Pause music"
                                 >
@@ -130,120 +130,65 @@ const Header = () => {
                             </span>
                             <br />
                             <span
-                                className="bold highlight-trigger"
+                                className="font-bold cursor-pointer relative transition-colors duration-300"
                                 onClick={() => setIsHighlighted(!isHighlighted)}
                             >
-                                Full Stack <span className="stroke-text">Developer</span>
+                                Full Stack{" "}
+                                <span
+                                    className="[-webkit-text-stroke:1.7px_rgb(17,0,255)] text-transparent font-bold"
+                                    style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
+                                >
+                                    Developer
+                                </span>
                             </span>
-
                             <br />
                         </h1>
 
-                        <p className={`hero-description ${isHighlighted ? "highlighted" : ""}`}>
-                            I’m a passionate <span className="desc-key">engineering student</span> with a focus on <span className="desc-key">creating</span>, 
+                        <p className={`hero-description text-[#aaaaaa] mb-6 max-w-[500px] leading-[23px] ${isHighlighted ? "highlighted" : ""}`}>
+                            I'm a passionate <span className="desc-key">engineering student</span> with a focus on <span className="desc-key">creating</span>,
                             seamless, <span className="desc-key">full-stack solutions</span>. I bridge the gap between <span className="desc-key">great
                             design</span> and <span className="desc-key"> robust functionality</span> ,
                             <span className="desc-key">  building user-centered</span> applications that are both
                             intuitive and efficient.
                         </p>
 
-
-                        <div className="social-icons">
-                            <a
-                                href="https://github.com/Madeshmadmax7"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <button>
-                                    <img
-                                        src="/logos/githubw.svg"
-                                        alt="GitHub"
-                                        className="social-icon"
-                                    />
+                        <div className="flex gap-2">
+                            <a href="https://github.com/Madeshmadmax7" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-transparent border border-[#888] p-[6px] rounded-[6px] cursor-pointer hover:bg-[#1f1f1f] transition-colors duration-200 text-white">
+                                    <img src="/logos/githubw.svg" alt="GitHub" className="w-5 h-5 object-contain" />
                                 </button>
                             </a>
-
-                            <a
-                                href="https://linkedin.com/in/MadeshA"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={handleLinkedinVisit}
-                            >
-                                <button>
-                                    <img
-                                        src="/logos/linkedinw.svg"
-                                        alt="LinkedIn"
-                                        className="social-icon"
-                                    />
+                            <a href="https://linkedin.com/in/MadeshA" target="_blank" rel="noopener noreferrer" onClick={handleLinkedinVisit}>
+                                <button className="bg-transparent border border-[#888] p-[6px] rounded-[6px] cursor-pointer hover:bg-[#1f1f1f] transition-colors duration-200 text-white">
+                                    <img src="/logos/linkedinw.svg" alt="LinkedIn" className="w-5 h-5 object-contain" />
                                 </button>
                             </a>
-
-                            <a
-                                href="https://discord.com/users/1331216531362811968"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <button>
-                                    <img
-                                        src="/logos/discordw.svg"
-                                        alt="Discord"
-                                        className="social-icon"
-                                    />
+                            <a href="https://discord.com/users/1331216531362811968" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-transparent border border-[#888] p-[6px] rounded-[6px] cursor-pointer hover:bg-[#1f1f1f] transition-colors duration-200 text-white">
+                                    <img src="/logos/discordw.svg" alt="Discord" className="w-5 h-5 object-contain" />
                                 </button>
                             </a>
-
-                            <a
-                                href="https://www.reddit.com/user/Madesh_A/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <button>
-                                    <img
-                                        src="/logos/redditw.svg"
-                                        alt="Reddit"
-                                        className="social-icon"
-                                    />
+                            <a href="https://www.reddit.com/user/Madesh_A/" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-transparent border border-[#888] p-[6px] rounded-[6px] cursor-pointer hover:bg-[#1f1f1f] transition-colors duration-200 text-white">
+                                    <img src="/logos/redditw.svg" alt="Reddit" className="w-5 h-5 object-contain" />
                                 </button>
                             </a>
-
-                            <a
-                                href="https://instagram.com/_mad_max_clicks_"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <button>
-                                    <img
-                                        src="/logos/instagramw.svg"
-                                        alt="Instagram"
-                                        className="social-icon"
-                                    />
+                            <a href="https://instagram.com/_mad_max_clicks_" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-transparent border border-[#888] p-[6px] rounded-[6px] cursor-pointer hover:bg-[#1f1f1f] transition-colors duration-200 text-white">
+                                    <img src="/logos/instagramw.svg" alt="Instagram" className="w-5 h-5 object-contain" />
                                 </button>
                             </a>
-
-                            <a
-                                href="https://www.facebook.com/share/1HhfoL82CT/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <button>
-                                    <img
-                                        src="/logos/facebookw.svg"
-                                        alt="Facebook"
-                                        className="social-icon"
-                                    />
+                            <a href="https://www.facebook.com/share/1HhfoL82CT/" target="_blank" rel="noopener noreferrer">
+                                <button className="bg-transparent border border-[#888] p-[6px] rounded-[6px] cursor-pointer hover:bg-[#1f1f1f] transition-colors duration-200 text-white">
+                                    <img src="/logos/facebookw.svg" alt="Facebook" className="w-5 h-5 object-contain" />
                                 </button>
                             </a>
                         </div>
 
-                        <div className="resume-section">
-                            <a
-                                href="/resume.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={handleResumeClick}
-                            >
-                                <button className="resume-btn">
-                                    <i className="fas fa-download resume-icon"></i>
+                        <div className="mt-4">
+                            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={handleResumeClick}>
+                                <button className="bg-[#1a1a1a] text-white mt-5 px-6 py-[10px] rounded-lg border border-[#555] cursor-pointer font-bold hover:bg-[#2a2a2a] transition-colors duration-200">
+                                    <i className="fas fa-download mr-2"></i>
                                     Resume
                                 </button>
                             </a>
@@ -252,44 +197,26 @@ const Header = () => {
 
                     {/* --- LEGO IMAGE --- */}
                     <div
-                        className={`hero-image ${isBlurred ? "blurred" : ""}`}
+                        className={`hero-image flex-1 min-w-[280px] flex justify-center items-center ${isBlurred ? "blurred" : ""}`}
                         onMouseEnter={handleHover}
                     >
-                        <div className="image-wrapper">
-                            <img src={meLego} alt="Madesh LEGO" className="lego-img" />
-                        </div>
+                        <img src={meLego} alt="Madesh LEGO" className="w-full max-w-[420px] h-auto rounded-[12px]" />
                     </div>
                 </div>
             </section>
 
             {/* --- Notifications --- */}
             {showBlurNotif && (
-                <AchievementNotification
-                    title="Achievement Unlocked"
-                    description="Curious Explorer"
-                    onClose={() => setShowBlurNotif(false)}
-                />
+                <AchievementNotification title="Achievement Unlocked" description="Curious Explorer" onClose={() => setShowBlurNotif(false)} />
             )}
             {showResumeNotif && (
-                <AchievementNotification
-                    title="Achievement Unlocked"
-                    description="Recruiter’s Eye"
-                    onClose={() => setShowResumeNotif(false)}
-                />
+                <AchievementNotification title="Achievement Unlocked" description="Recruiter's Eye" onClose={() => setShowResumeNotif(false)} />
             )}
             {showLinkedinNotif && (
-                <AchievementNotification
-                    title="Achievement Unlocked"
-                    description="Network Builder"
-                    onClose={() => setShowLinkedinNotif(false)}
-                />
+                <AchievementNotification title="Achievement Unlocked" description="Network Builder" onClose={() => setShowLinkedinNotif(false)} />
             )}
             {showMusicNotif && (
-                <AchievementNotification
-                    title="Achievement Unlocked"
-                    description="Noise Creator"
-                    onClose={() => setShowMusicNotif(false)}
-                />
+                <AchievementNotification title="Achievement Unlocked" description="Noise Creator" onClose={() => setShowMusicNotif(false)} />
             )}
         </header>
     );

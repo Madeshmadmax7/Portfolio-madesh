@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect, createRef, useCallback } from 'react';
 import { gsap } from 'gsap';
-import './Navbar.css';
-import './NavTimer.css';
 
 const navItems = [
     { name: 'Pulse', id: 'pulse' },
@@ -67,12 +65,13 @@ useEffect(() => {
 
 
 return (
-    <nav className="nav-menu" ref={menuRef}>
+    <nav className="nav-menu flex relative ml-[450px] gap-6" ref={menuRef}>
     {items.map((item, index) => (
         <button
         key={item.name}
         ref={itemRefs.current[index]}
-        className="nav-link"
+        className="text-white no-underline px-4 py-2 font-medium relative z-[2] border-none bg-transparent cursor-pointer text-base hover:text-[#ffeded] transition-colors duration-200"
+        style={{ fontFamily: '"Exo 2", sans-serif' }}
         onClick={() => {
             scrollToSection(item.id);
             setActive(index);
@@ -82,19 +81,19 @@ return (
         {item.name}
         </button>
     ))}
-    <div ref={indicatorRef} className="nav-indicator" />
+    <div ref={indicatorRef} className="absolute rounded-[40px] bg-white opacity-10 z-[1] pointer-events-none" />
     </nav>
 );
 };
 
 const Navbar = () => {
 return (
-    <header className="navbar">
-    <div className="nav-logo" onClick={() => scrollToSection('home')}>MAD</div>
+    <header className="flex w-full items-center justify-between py-5 px-[60px] bg-black fixed top-0 z-[1000]" style={{ fontFamily: "'Poppins', 'Segoe UI', sans-serif" }}>
+    <div className="text-2xl font-bold text-white cursor-pointer" onClick={() => scrollToSection('home')}>MAD</div>
     <NavMenu items={navItems} />
-    <div className="nav-actions">
+    <div className="nav-actions flex items-center gap-4">
         <button
-        className="nav-btn"
+        className="bg-white text-black px-4 py-2 font-bold border-none rounded-full cursor-pointer hover:bg-[#fef3fe] transition-colors duration-300 text-sm"
         onClick={() =>
             window.open(
             'https://mail.google.com/mail/?view=cm&fs=1&to=writetomadesh@gmail.com&su=Inquiry%20Regarding%20Collaboration&body=Dear%20Madesh%2C%0A%0AI%20hope%20this%20message%20finds%20you%20well.%20I%20would%20like%20to%20discuss%20a%20potential%20collaboration%20with%20you.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%0A%0ABest%20regards%2C%0A[Your%20Name]',
@@ -102,7 +101,7 @@ return (
             )
         }
         >
-        Let’s Talk
+        Let's Talk
         </button>
         <figure className="navtimer-component" aria-hidden="true">
         <div className="navtimer-wrapper">
