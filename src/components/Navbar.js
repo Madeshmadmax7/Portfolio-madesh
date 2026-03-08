@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, createRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import projectsData from '../data/projectsData';
 
@@ -7,6 +8,7 @@ const navItems = [
     { name: 'Skills', id: 'skills' },
     { name: 'Projects', id: 'projects', badge: projectsData.length },
     { name: 'Contact', id: 'contact' },
+    { name: 'Note', route: '/notes' },
 ];
 
 const scrollToSection = (id, duration = 800) => {
@@ -41,6 +43,7 @@ const menuRef = useRef();
 const indicatorRef = useRef();
 const itemRefs = useRef(items.map(() => createRef()));
 const [active, setActive] = useState(0);
+const navigate = useNavigate();
 const animate = useCallback(() => {
     const menuOffset = menuRef.current.getBoundingClientRect();
     const activeItem = itemRefs.current[active].current;
@@ -66,7 +69,7 @@ useEffect(() => {
 
 
 return (
-    <nav className="nav-menu flex relative ml-[450px] gap-6" ref={menuRef}>
+    <nav className="nav-menu flex relative ml-[280px] gap-4" ref={menuRef}>
     {items.map((item, index) => (
         <button
         key={item.name}
@@ -74,7 +77,8 @@ return (
         className="text-white no-underline px-4 py-2 font-medium relative z-[2] border-none bg-transparent cursor-pointer text-base hover:text-[#ffeded] transition-colors duration-200"
         style={{ fontFamily: '"Exo 2", sans-serif' }}
         onClick={() => {
-            scrollToSection(item.id);
+            if (item.route) navigate(item.route);
+            else scrollToSection(item.id);
             setActive(index);
         }}
         onMouseEnter={() => setActive(index)}

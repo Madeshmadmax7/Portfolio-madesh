@@ -18,7 +18,7 @@ function drawBoard(ctx, snake, food, dir) {
     ctx.fillRect(0, 0, COLS * CELL, ROWS * CELL);
 
     // subtle grid dots
-    ctx.fillStyle = 'rgba(255,255,255,0.04)';
+    ctx.fillStyle = 'rgba(255,255,255,1)';
     for (let x = 0; x < COLS; x++)
         for (let y = 0; y < ROWS; y++)
             ctx.fillRect(x * CELL + CELL / 2 - 1, y * CELL + CELL / 2 - 1, 2, 2);

@@ -10,6 +10,7 @@ import MiniNavbar from "./components/MiniNavbar";
 import AchievementNotification from "./components/AchievementNotification";
 import Matrix from "./pages/Matrix";
 import SnakeGame from "./components/SnakeGame";
+import Notes from "./pages/Notes";
 
 
 function AppContent() {
@@ -190,6 +191,7 @@ function AppContent() {
                 </>
               }
             />
+            <Route path="/notes" element={<Notes />} />
           </Routes>
           <Gift className="floating-treasure" onClick={handleTrophyClick} />
           {notification && (
