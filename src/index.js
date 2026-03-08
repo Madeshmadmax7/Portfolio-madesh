@@ -13,11 +13,9 @@ root.render(
 
 reportWebVitals();
 
+// Unregister any old service workers to prevent stale cache issues
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/service-worker.js')
-      .then(reg => console.log("Service worker registered:", reg))
-      .catch(err => console.log("Service worker registration failed:", err));
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((reg) => reg.unregister());
   });
 }
