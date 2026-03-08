@@ -19,7 +19,7 @@ const Projects = () => {
                             {project.stack && project.stack.length > 0 && (
                                 <div className="flex gap-[6px] flex-wrap mb-3">
                                     {project.stack.map(tech => (
-                                        <span key={tech} className="text-[10px] border border-white/15 bg-white/5 text-white/60 px-[8px] py-[2px] rounded-full">{tech}</span>
+                                        <span key={tech} className="text-[10px] bg-white text-black font-medium px-[8px] py-[3px] rounded-[4px]">{tech}</span>
                                     ))}
                                 </div>
                             )}
