@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import MiniNavbar from '../components/MiniNavbar';
 import NoteDrawingModal from '../components/NoteDrawingModal';
-import { fetchNotes, isConfigured } from '../utils/notesDB';
+import { fetchNotes, isConfigured, prependToCache } from '../utils/notesDB';
+import { unlockAchievement } from '../components/Achievements';
 
 // Deterministic rotation per slot so cards always look consistent
-const ROTS = [-5, 3, -2.5, 6, -4, 2, -6, 4.5, -1.5, 5, -3.5, 1, -5.5, 3.5, -2, 5.5, -4.5, 2.5];
+const ROTS = [-2.5, 1.5, -2, 3, -1.5, 2.5, -3, 2, -1, 2, -2, 1, -2.5, 1.5, -1, 2.5, -2, 1.5];
+// skeleton tilt angles (alternating left/right, gentle)
+const SKEL_ROTS = [-3, 2, -2.5, 3, -1.5, 2.5, -2, 1.5, -2.5, 2];
 
 const TagLine = ({ count, loading }) => (
     <p className="font-mono text-[11px] text-[#666] mt-[6px]">
@@ -14,48 +17,52 @@ const TagLine = ({ count, loading }) => (
 
 const SkeletonCard = ({ idx }) => (
     <div
-        className="rounded-[12px] overflow-hidden bg-[#111] border border-[#222] animate-pulse"
-        style={{ transform: `rotate(${ROTS[idx % ROTS.length]}deg)` }}
+        className="rounded-[12px] overflow-hidden bg-[#111] border border-[#1e1e1e] animate-pulse"
+        style={{ transform: `rotate(${SKEL_ROTS[idx % SKEL_ROTS.length]}deg)` }}
     >
-        <div className="bg-[#1a1a1a] h-[155px]" />
+        {/* grey drawing area — matches old dark skeleton style */}
+        <div className="bg-[#1e1e1e] h-[155px]" />
         <div className="p-3 space-y-2">
-            <div className="h-[8px] bg-[#222] rounded w-2/5" />
-            <div className="h-[7px] bg-[#1a1a1a] rounded w-3/5" />
+            <div className="h-[8px] bg-[#2a2a2a] rounded w-2/5" />
+            <div className="h-[7px] bg-[#222] rounded w-3/5" />
         </div>
     </div>
 );
 
 const NoteCard = ({ note, idx }) => {
     const rot = ROTS[idx % ROTS.length];
-    const cardRef = useRef(null);
 
     return (
+        // Outer div handles tilt — separate from animation so they don't fight
         <div
-            ref={cardRef}
-            className="rounded-[12px] overflow-hidden bg-[#111] border border-[#2a2a2a] hover:border-[#444] cursor-default select-none [animation:fadeInScale_0.35s_ease_both]"
             style={{
                 transform: `rotate(${rot}deg)`,
-                transition: 'transform 0.28s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s ease',
-                animationDelay: `${(idx % 12) * 55}ms`,
+                transition: 'transform 0.28s cubic-bezier(0.34,1.56,0.64,1)',
             }}
             onMouseEnter={e => (e.currentTarget.style.transform = 'rotate(0deg) translateY(-5px)')}
             onMouseLeave={e => (e.currentTarget.style.transform = `rotate(${rot}deg)`)}
         >
-            {/* Drawing */}
-            <div className="bg-[#f0f0f0] overflow-hidden flex items-center justify-center" style={{ height: 155 }}>
-                <img
-                    src={note.drawing}
-                    alt={`${note.name}'s drawing`}
-                    draggable={false}
-                    className="w-full h-full object-contain"
-                />
-            </div>
-            {/* Meta */}
-            <div className="px-3 py-[10px]">
-                <p className="font-mono text-[11px] text-white font-semibold truncate">{note.name}</p>
-                {note.message && (
-                    <p className="font-mono text-[10px] text-[#888] mt-[3px] leading-[1.45] line-clamp-2">{note.message}</p>
-                )}
+            {/* Inner div handles fade-in animation and card styling */}
+            <div
+                className="rounded-[12px] overflow-hidden bg-[#111] border border-[#2a2a2a] hover:border-[#444] cursor-default select-none [animation:fadeInScale_0.35s_ease_both]"
+                style={{ animationDelay: `${(idx % 12) * 55}ms` }}
+            >
+                {/* Drawing */}
+                <div className="bg-[#f0f0f0] overflow-hidden flex items-center justify-center" style={{ height: 155 }}>
+                    <img
+                        src={note.drawing}
+                        alt={`${note.name}'s drawing`}
+                        draggable={false}
+                        className="w-full h-full object-contain"
+                    />
+                </div>
+                {/* Meta */}
+                <div className="px-3 py-[10px]">
+                    <p className="font-mono text-[11px] text-white font-semibold truncate">{note.name}</p>
+                    {note.message && (
+                        <p className="font-mono text-[10px] text-[#888] mt-[3px] leading-[1.45] line-clamp-2">{note.message}</p>
+                    )}
+                </div>
             </div>
         </div>
     );
@@ -114,16 +121,18 @@ export default function Notes() {
     const refresh = () => {
         if (dbMissing) return;
         setLoading(true);
-        fetchNotes().then(data => {
+        fetchNotes(true).then(data => {
             setNotes(data);
             setLoading(false);
         });
     };
 
     const handlePosted = (note) => {
+        prependToCache(note);
         setNotes(prev => [note, ...prev]);
         setHasPosted(true);
         setShowModal(false);
+        unlockAchievement(16);
     };
 
     return (

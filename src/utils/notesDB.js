@@ -13,21 +13,30 @@
 
 const DB = import.meta.env.VITE_NOTES_DB_URL;
 
+// In-memory cache — survives SPA navigation, cleared on browser refresh
+let _cache = null;
+
 export const isConfigured = () => Boolean(DB);
 
-export const fetchNotes = async () => {
+export const fetchNotes = async (force = false) => {
     if (!DB) return [];
+    if (_cache && !force) return _cache;
     try {
         const res = await fetch(`${DB}/notes.json`);
-        if (!res.ok) return [];
+        if (!res.ok) return _cache ?? [];
         const data = await res.json();
-        if (!data || typeof data !== 'object') return [];
-        return Object.values(data)
+        if (!data || typeof data !== 'object') { _cache = []; return _cache; }
+        _cache = Object.values(data)
             .filter(Boolean)
             .sort((a, b) => (b.timestamp ?? 0) - (a.timestamp ?? 0));
+        return _cache;
     } catch {
-        return [];
+        return _cache ?? [];
     }
+};
+
+export const prependToCache = (note) => {
+    if (_cache) _cache = [note, ..._cache];
 };
 
 export const postNote = async (note) => {

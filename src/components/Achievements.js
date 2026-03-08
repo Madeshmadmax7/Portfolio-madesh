@@ -14,7 +14,8 @@ import {
     ChevronsDown,
     Moon,
     Shield,
-    Gamepad2
+    Gamepad2,
+    PenLine
 } from "lucide-react";
 import AchievementNotification from "./AchievementNotification";
 
@@ -35,6 +36,7 @@ const achievementsData = [
     { id: 13, icon: <Moon size={26} />, title: "Night Owl", description: "You visited after midnight.", difficulty: "Medium" },
     { id: 14, icon: <Shield size={26} />, title: "Triple Threat", description: "Visited the portfolio 3 times.", difficulty: "Medium" },
     { id: 15, icon: <Gamepad2 size={26} />, title: "Konami Savant", description: "You know the code. ↑↑↓↓←→←→BA", difficulty: "Hard" },
+    { id: 16, icon: <PenLine size={26} />, title: "Left a Mark", description: "You drew something and left a note for the world.", difficulty: "Easy" },
 ];
 
 // Helper to unlock an achievement
