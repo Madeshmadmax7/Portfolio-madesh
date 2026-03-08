@@ -9,6 +9,7 @@ import Loader from "./components/Loader";
 import MiniNavbar from "./components/MiniNavbar";
 import AchievementNotification from "./components/AchievementNotification";
 import Matrix from "./pages/Matrix";
+import SnakeGame from "./components/SnakeGame";
 
 
 function AppContent() {
@@ -18,7 +19,7 @@ function AppContent() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [showKonamiEgg, setShowKonamiEgg] = useState(false);
+  const [showSnakeGame, setShowSnakeGame] = useState(false);
   const [showMatrixTransition, setShowMatrixTransition] = useState(false);
   const prevPathRef = useRef('/');
 
@@ -123,7 +124,7 @@ function AppContent() {
     }
   }, []);
 
-  // 🎮 Konami Code Easter Egg
+  // 🎮 Konami Code → opens Snake game
   useEffect(() => {
     const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
     let idx = 0;
@@ -132,10 +133,7 @@ function AppContent() {
         idx++;
         if (idx === seq.length) {
           idx = 0;
-          setShowKonamiEgg(true);
-          setTimeout(() => setShowKonamiEgg(false), 3000);
-          const isNew = unlockAchievement(15);
-          if (isNew) setNotification({ title: "Achievement Unlocked!", description: "Konami Savant" });
+          setShowSnakeGame(true);
         }
       } else {
         idx = e.key === seq[0] ? 1 : 0;
@@ -201,14 +199,16 @@ function AppContent() {
               onClose={() => setNotification(null)}
             />
           )}
-          {showKonamiEgg && (
-            <div className="fixed inset-0 z-[20000] flex items-center justify-center pointer-events-none">
-              <div className="text-center [animation:fadeInScale_0.4s_ease]">
-                <div className="text-[5rem] mb-3 select-none">🎮</div>
-                <div className="font-mono text-2xl font-bold text-white tracking-widest">↑↑↓↓←→←→BA</div>
-                <div className="text-[#666] font-mono text-sm mt-2">Cheat Code Activated</div>
-              </div>
-            </div>
+          {showSnakeGame && (
+            <SnakeGame
+              onClose={() => setShowSnakeGame(false)}
+              onGameOver={(replay) => {
+                setShowSnakeGame(false);
+                localStorage.setItem('snakeReplay', JSON.stringify(replay));
+                const isNew = unlockAchievement(15);
+                if (isNew) setNotification({ title: "Achievement Unlocked!", description: "Konami Savant" });
+              }}
+            />
           )}
           {showMatrixTransition && (
             <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 pointer-events-none [animation:matrixFadeOut_2.5s_ease-in-out_forwards]">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
     Search,
     Eye,
@@ -57,6 +57,65 @@ const Achievements = () => {
     const [unlocked, setUnlocked] = useState([]);
     const [showNoti, setShowNoti] = useState(false);
     const [recentUnlocked, setRecentUnlocked] = useState(null);
+    const [replay, setReplay] = useState(null);
+    const [frameIdx, setFrameIdx] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const replayCanvasRef = useRef(null);
+    const playIntervalRef = useRef(null);
+
+    // Load saved snake replay
+    useEffect(() => {
+        try {
+            const raw = localStorage.getItem('snakeReplay');
+            if (raw) setReplay(JSON.parse(raw));
+        } catch {}
+    }, []);
+
+    // Draw replay frame on canvas
+    useEffect(() => {
+        const canvas = replayCanvasRef.current;
+        if (!canvas || !replay || !replay[frameIdx]) return;
+        const frame = replay[frameIdx];
+        const ctx = canvas.getContext('2d');
+        const C = 10;
+        const COLS = 25, ROWS = 20;
+        ctx.fillStyle = '#0a0a0f';
+        ctx.fillRect(0, 0, COLS * C, ROWS * C);
+        ctx.fillStyle = 'rgba(255,255,255,0.04)';
+        for (let x = 0; x < COLS; x++)
+            for (let y = 0; y < ROWS; y++)
+                ctx.fillRect(x * C + C / 2 - 0.5, y * C + C / 2 - 0.5, 1, 1);
+        frame.snake.forEach((seg, i) => {
+            ctx.fillStyle = i === 0 ? '#ffffff' : `rgba(180,180,180,${Math.max(0.2, 1 - i * 0.025)})`;
+            ctx.fillRect(seg.x * C + 1, seg.y * C + 1, C - 2, C - 2);
+        });
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(frame.food.x * C + C / 2, frame.food.y * C + C / 2, C / 2 - 1, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#0a0a0f';
+        ctx.beginPath();
+        ctx.arc(frame.food.x * C + C / 2, frame.food.y * C + C / 2, C / 2 - 3, 0, Math.PI * 2);
+        ctx.fill();
+    }, [replay, frameIdx]);
+
+    // Auto-advance playback
+    useEffect(() => {
+        if (isPlaying) {
+            playIntervalRef.current = setInterval(() => {
+                setFrameIdx(i => {
+                    if (i >= (replay?.length ?? 1) - 1) {
+                        setIsPlaying(false);
+                        return i;
+                    }
+                    return i + 1;
+                });
+            }, 80);
+        } else {
+            clearInterval(playIntervalRef.current);
+        }
+        return () => clearInterval(playIntervalRef.current);
+    }, [isPlaying, replay]);
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("achievements"));
@@ -135,6 +194,79 @@ const Achievements = () => {
                     );
                 })}
             </div>
+
+            {/* ── Snake Replay Viewer ── */}
+            {replay && replay.length > 0 && (
+                <div className="mt-16 max-w-[600px] mx-auto pb-16">
+                    <p className="font-mono text-[10px] text-[#333] tracking-[0.5em] uppercase text-center mb-6">— Last Snake Replay —</p>
+                    <div className="bg-[#0a0a0f] border border-[#1a1a1a] rounded-[14px] overflow-hidden">
+                        {/* replay header */}
+                        <div className="flex items-center justify-between px-5 py-[10px] border-b border-[#141414]">
+                            <span className="font-mono text-[10px] text-[#444]">
+                                FRAME <span className="text-white">{String(frameIdx + 1).padStart(4, '0')}</span>
+                            </span>
+                            <span className="font-mono text-[8px] text-[#222] tracking-[0.5em] uppercase">Replay</span>
+                            <span className="font-mono text-[10px] text-[#444]">
+                                / <span className="text-white">{String(replay.length).padStart(4, '0')}</span>
+                            </span>
+                        </div>
+                        {/* mini board */}
+                        <div className="flex justify-center p-5">
+                            <canvas ref={replayCanvasRef} width={250} height={200} className="block rounded-[4px]" />
+                        </div>
+                        {/* controls */}
+                        <div className="flex items-center gap-2 px-5 py-4 border-t border-[#141414]">
+                            {/* jump to start */}
+                            <button
+                                onClick={() => { setIsPlaying(false); setFrameIdx(0); }}
+                                disabled={frameIdx === 0 && !isPlaying}
+                                className="font-mono text-[10px] border border-[#1e1e1e] text-[#444] px-3 py-[6px] rounded-[5px] hover:border-[#333] hover:text-[#888] disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+                            >⟨⟨</button>
+                            {/* prev */}
+                            <button
+                                onClick={() => { setIsPlaying(false); setFrameIdx(i => Math.max(0, i - 1)); }}
+                                disabled={frameIdx === 0}
+                                className="font-mono text-[10px] border border-[#1e1e1e] text-[#444] px-3 py-[6px] rounded-[5px] hover:border-[#333] hover:text-[#888] disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+                            >←</button>
+                            {/* play / pause */}
+                            <button
+                                onClick={() => {
+                                    if (frameIdx >= replay.length - 1) setFrameIdx(0);
+                                    setIsPlaying(p => !p);
+                                }}
+                                className="font-mono text-[10px] border border-[#333] text-white px-4 py-[6px] rounded-[5px] hover:bg-white/5 transition-all duration-150 min-w-[52px]"
+                            >{isPlaying ? '⏸ PAUSE' : '▶ PLAY'}</button>
+                            {/* progress bar */}
+                            <div
+                                className="flex-1 h-[2px] bg-[#111] rounded-full overflow-hidden mx-1 cursor-pointer"
+                                onClick={e => {
+                                    setIsPlaying(false);
+                                    const rect = e.currentTarget.getBoundingClientRect();
+                                    const pct = (e.clientX - rect.left) / rect.width;
+                                    setFrameIdx(Math.round(pct * (replay.length - 1)));
+                                }}
+                            >
+                                <div
+                                    className="h-full bg-white/30 rounded-full transition-all duration-75"
+                                    style={{ width: `${((frameIdx + 1) / replay.length) * 100}%` }}
+                                />
+                            </div>
+                            {/* next */}
+                            <button
+                                onClick={() => { setIsPlaying(false); setFrameIdx(i => Math.min(replay.length - 1, i + 1)); }}
+                                disabled={frameIdx === replay.length - 1}
+                                className="font-mono text-[10px] border border-[#1e1e1e] text-[#444] px-3 py-[6px] rounded-[5px] hover:border-[#333] hover:text-[#888] disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+                            >→</button>
+                            {/* jump to end */}
+                            <button
+                                onClick={() => { setIsPlaying(false); setFrameIdx(replay.length - 1); }}
+                                disabled={frameIdx === replay.length - 1}
+                                className="font-mono text-[10px] border border-[#1e1e1e] text-[#444] px-3 py-[6px] rounded-[5px] hover:border-[#333] hover:text-[#888] disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-150"
+                            >⟩⟩</button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {showNoti && recentUnlocked && (
                 <AchievementNotification
