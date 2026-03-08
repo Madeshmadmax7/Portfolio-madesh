@@ -6,3 +6,15 @@
   from   = "/*"
   to     = "/index.html"
   status = 200
+
+# Never cache index.html — always fetch fresh so new deploys take effect immediately
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Cache hashed assets forever (Vite fingerprints filenames on every build)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
