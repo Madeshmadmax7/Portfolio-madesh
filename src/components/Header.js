@@ -19,6 +19,7 @@ const Header = () => {
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [songUnlocked, setSongUnlocked] = useState(false);
+    const [visitorCount, setVisitorCount] = useState(null);
 
     const songs = [
         "/songs/song1.mp3",
@@ -37,12 +38,19 @@ const Header = () => {
         }
     }, []);
 
+    useEffect(() => {
+        fetch('https://api.countapi.xyz/hit/madeshdev/portfolio')
+            .then(r => r.json())
+            .then(d => setVisitorCount(d.value))
+            .catch(() => {});
+    }, []);
+
     const handleHover = () => {
         if (!blurUnlocked) {
             setIsBlurred(false);
             setBlurUnlocked(true);
-            unlockAchievement(3);
-            setShowBlurNotif(true);
+            const isNew = unlockAchievement(3);
+            if (isNew) setShowBlurNotif(true);
             localStorage.setItem("blurCleared", "true");
         }
     };
@@ -50,16 +58,16 @@ const Header = () => {
     const handleResumeClick = () => {
         if (!resumeUnlocked) {
             setResumeUnlocked(true);
-            unlockAchievement(2);
-            setShowResumeNotif(true);
+            const isNew = unlockAchievement(2);
+            if (isNew) setShowResumeNotif(true);
         }
     };
 
     const handleLinkedinVisit = () => {
         if (!linkedinVisited) {
             setLinkedinVisited(true);
-            unlockAchievement(8);
-            setShowLinkedinNotif(true);
+            const isNew = unlockAchievement(8);
+            if (isNew) setShowLinkedinNotif(true);
         }
     };
 
@@ -82,8 +90,8 @@ const Header = () => {
 
             if (!songUnlocked) {
                 setSongUnlocked(true);
-                unlockAchievement(10);
-                setShowMusicNotif(true);
+                const isNew = unlockAchievement(10);
+                if (isNew) setShowMusicNotif(true);
             }
         } else {
             // ⏸️ Pause current song
@@ -193,6 +201,12 @@ const Header = () => {
                                 </button>
                             </a>
                         </div>
+                        {visitorCount && (
+                            <div className="mt-4 inline-flex items-center gap-[6px] text-[11px] text-[#555] border border-[#2a2a2a] px-3 py-[5px] rounded-full">
+                                <span className="w-[5px] h-[5px] rounded-full bg-[#444] animate-pulse inline-block"></span>
+                                {visitorCount.toLocaleString()} visits
+                            </div>
+                        )}
                     </div>
 
                     {/* --- LEGO IMAGE --- */}

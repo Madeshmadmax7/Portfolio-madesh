@@ -19,6 +19,7 @@ const projectsData = [
         title: 'Polaris',
         desc: 'An AI-powered productivity system that analyzes YouTube content using NLP, tracks study behavior through a browser extension, and blocks distractions to keep learning focused.',
         src: img13,
+        stack: ['React', 'Python', 'NLP', 'Chrome Ext'],
         github: 'https://github.com/Madeshmadmax7/polaris-full',
         live: 'https://polaris-planner.vercel.app',
         inProgress: true,
@@ -28,6 +29,7 @@ const projectsData = [
         title: 'Mythos AI',
         desc: 'An AI-powered mythology exploration platform that generates stories, explanations, and insights about global mythologies using intelligent prompts and NLP.',
         src: img15,
+        stack: ['React', 'OpenAI', 'NLP'],
         github: 'https://github.com/Madeshmadmax7/mythos-ai',
         live: 'https://mythos-ai.vercel.app',
         inProgress: true,
@@ -37,6 +39,7 @@ const projectsData = [
         title: 'DocLink',
         desc: 'A medical consultation platform that connects patients and doctors with features like appointment booking, health services information, and real-time video consultation.',
         src: img14,
+        stack: ['React', 'Spring Boot', 'MySQL', 'WebRTC'],
         github: 'https://github.com/Madeshmadmax7/doclink',
         live: 'https://doclink.vercel.app',
         inProgress: true,
@@ -47,6 +50,7 @@ const projectsData = [
         title: 'Monastery360',
         desc: 'Built an immersive 360° virtual tour PWA to digitally preserve and showcase Sikkim’s monasteries. Users can explore sites virtually, view digital archives of murals and manuscripts, and interact with hotspots for cultural insights. Developed with React, Vite, Tailwind, A-Frame, and Pannellum, the app works offline for accessibility in remote regions, supporting tourism, education, and heritage preservation.',
         src: img12,
+        stack: ['React', 'Vite', 'A-Frame', 'PWA'],
         github: 'https://github.com/Madeshmadmax7/SacredSikkim',
         live: 'https://monastery360.netlify.app/',
     },
@@ -54,6 +58,7 @@ const projectsData = [
         title: 'BatsUp',
         desc: 'A full-stack cricket booking and management platform built with Spring Boot and MySQL, featuring real-time match, team, and player tracking.',
         src: img11,
+        stack: ['Spring Boot', 'MySQL', 'React'],
         github: 'https://github.com/Madeshmadmax7/BatsUp',
         live: 'https://batsup.netlify.app/',
     },
@@ -61,6 +66,7 @@ const projectsData = [
         title: 'StayFinder',
         desc: 'A full-stack hotel booking platform built with React, Spring Boot, and MySQL.',
         src: img10,
+        stack: ['React', 'Spring Boot', 'MySQL'],
         github: 'https://github.com/Madeshmadmax7/stayfinder',
         live: 'https://stayfinderrr.netlify.app'
     },
@@ -68,6 +74,7 @@ const projectsData = [
         title: 'Disqord',
         desc: 'A Clonned version of Discord.',
         src: img8,
+        stack: ['React', 'Firebase'],
         github: 'https://github.com/Madeshmadmax7/discord-clone',
         live: 'https://disqord.netlify.app'
     },
@@ -75,6 +82,7 @@ const projectsData = [
         title: 'Portfolio',
         desc: 'My personal Portfolio.',
         src: img9,
+        stack: ['React', 'Vite', 'Tailwind'],
         github: 'https://github.com/Madeshmadmax7/portfolio',
         live: 'https://madeshdev.netlify.app'
     },
@@ -82,6 +90,7 @@ const projectsData = [
         title: 'UI Crate',
         desc: 'A collection of ready to use react components for your projects.',
         src: img7,
+        stack: ['React'],
         github: 'https://github.com/Madeshmadmax7/uicrate',
         live: 'https://uicrate.netlify.app'
     },
@@ -89,6 +98,7 @@ const projectsData = [
         title: 'Occasio',
         desc: 'A stylish and responsive event management website designed to facilitate event bookings and information sharing.',
         src: img1,
+        stack: ['HTML', 'CSS', 'JS'],
         github: 'https://github.com/Madeshmadmax7/occasio',
         live: 'https://madeshmadmax7.github.io/occasio/'
     },
@@ -96,6 +106,7 @@ const projectsData = [
         title: 'Ebook store',
         desc: 'An online platform to browse, buy, and download ebooks with a user-friendly interface.',
         src: img2,
+        stack: ['HTML', 'CSS', 'JS'],
         github: 'https://github.com/Madeshmadmax7/ebook-store',
         live: 'https://madeshmadmax7.github.io/ebook-store/'
     },
@@ -103,6 +114,7 @@ const projectsData = [
         title: 'Train Ticket Booking',
         desc: 'A React-based web application for booking train tickets with seat selection and payment integration.',
         src: img3,
+        stack: ['React'],
         github: 'https://github.com/Madeshmadmax7/train-ticket-app-react',
         live: 'https://madeshmadmax7.github.io/train-ticket-app-react/'
     },
@@ -110,6 +122,7 @@ const projectsData = [
         title: 'Trek',
         desc: 'A trekking destination booking website allowing users to explore and book trekking trips.',
         src: img4,
+        stack: ['HTML', 'CSS', 'JS'],
         github: 'https://github.com/Madeshmadmax7/Trekking-destination-booking',
         live: 'https://madeshmadmax7.github.io/Trekking-destination-booking/'
     },
@@ -117,6 +130,7 @@ const projectsData = [
         title: 'Wallpaper download',
         desc: 'A website where users can easily browse and download a variety of high-quality wallpapers.',
         src: img5,
+        stack: ['HTML', 'CSS', 'JS'],
         github: 'https://github.com/Madeshmadmax7/Wallpaperdownload-website',
         live: 'https://madeshmadmax7.github.io/Wallpaperdownload-website/'
     },
@@ -124,6 +138,7 @@ const projectsData = [
         title: 'Planet Earth',
         desc: 'A visually engaging project showcasing planet-related content with interactive features for users.',
         src: img6,
+        stack: ['Three.js', 'WebGL'],
         github: 'https://github.com/Madeshmadmax7/Planet-Earth-Website',
         live: 'https://planet-earth-iumuxjrv7-madeshs-projects-9efc3cf2.vercel.app/main.html',
     },

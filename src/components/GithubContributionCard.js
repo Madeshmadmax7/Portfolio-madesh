@@ -124,7 +124,42 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
     setReloadKey(prev => prev + 1);
   };
 
-  if (loading || !userData) return <div className="w-full min-h-screen flex justify-center items-center bg-transparent">Loading...</div>;
+  if (loading || !userData) return (
+    <div className="w-full min-h-screen pt-[100px] pb-[80px] flex justify-center items-center">
+      <div className="w-full max-w-[925px] px-[2.5rem] animate-pulse">
+        <div className="h-7 w-24 bg-white/10 rounded-md mx-auto mb-10"></div>
+        <div className="rounded-[1rem] border border-[rgba(105,105,105,0.3)] bg-[rgba(0,0,0,0.76)] overflow-hidden">
+          <div className="h-14 flex items-center px-6 gap-2 border-b border-white/5">
+            <div className="flex gap-2">
+              <div className="w-4 h-4 rounded-full bg-[#e86a5e]/40"></div>
+              <div className="w-4 h-4 rounded-full bg-[#f1be50]/40"></div>
+              <div className="w-4 h-4 rounded-full bg-[#61c454]/40"></div>
+            </div>
+            <div className="flex-1 mx-6 h-6 bg-white/5 rounded-lg"></div>
+          </div>
+          <div className="p-8 space-y-6">
+            <div className="flex gap-4">
+              <div className="w-12 h-12 rounded-full bg-white/10 shrink-0"></div>
+              <div className="flex-1 space-y-2 pt-1">
+                <div className="h-3 w-28 bg-white/10 rounded"></div>
+                <div className="h-2.5 w-40 bg-white/5 rounded"></div>
+                <div className="h-2.5 w-32 bg-white/5 rounded"></div>
+              </div>
+            </div>
+            <div className="space-y-[4px]">
+              {[...Array(7)].map((_, i) => (
+                <div key={i} className="flex gap-[4px]">
+                  {[...Array(52)].map((_, j) => (
+                    <div key={j} className="w-3 h-3 rounded-[2px] bg-white/5 shrink-0"></div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <>

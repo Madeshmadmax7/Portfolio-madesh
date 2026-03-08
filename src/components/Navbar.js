@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect, createRef, useCallback } from 'react';
 import { gsap } from 'gsap';
+import projectsData from '../data/projectsData';
 
 const navItems = [
     { name: 'Pulse', id: 'pulse' },
     { name: 'Skills', id: 'skills' },
-    { name: 'Projects', id: 'projects' },
+    { name: 'Projects', id: 'projects', badge: projectsData.length },
     { name: 'Contact', id: 'contact' },
 ];
 
@@ -79,6 +80,11 @@ return (
         onMouseEnter={() => setActive(index)}
         >
         {item.name}
+        {item.badge && (
+            <span className="ml-1.5 align-middle text-[10px] bg-white/10 text-white/60 px-[6px] py-[1px] rounded-full">
+            {item.badge}
+            </span>
+        )}
         </button>
     ))}
     <div ref={indicatorRef} className="absolute rounded-[40px] bg-white opacity-10 z-[1] pointer-events-none" />
@@ -89,7 +95,13 @@ return (
 const Navbar = () => {
 return (
     <header className="flex w-full items-center justify-between py-5 px-[60px] bg-black fixed top-0 z-[1000]" style={{ fontFamily: "'Poppins', 'Segoe UI', sans-serif" }}>
-    <div className="text-2xl font-bold text-white cursor-pointer" onClick={() => scrollToSection('home')}>MAD</div>
+    <div className="flex items-center gap-3">
+        <div className="text-2xl font-bold text-white cursor-pointer" onClick={() => scrollToSection('home')}>MAD</div>
+        <span className="hidden md:inline-flex items-center gap-[5px] text-[10px] border border-[#2a2a2a] px-[10px] py-[4px] rounded-full text-[#666]">
+        <span className="w-[5px] h-[5px] rounded-full bg-emerald-500 animate-pulse inline-block"></span>
+        Currently building
+        </span>
+    </div>
     <NavMenu items={navItems} />
     <div className="nav-actions flex items-center gap-4">
         <button

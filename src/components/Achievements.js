@@ -10,7 +10,11 @@ import {
     Terminal,
     MousePointer,
     Volume2,
-    Brain
+    Brain,
+    ChevronsDown,
+    Moon,
+    Shield,
+    Gamepad2
 } from "lucide-react";
 import AchievementNotification from "./AchievementNotification";
 
@@ -27,6 +31,10 @@ const achievementsData = [
     { id: 9, icon: <Terminal size={26} />, title: "Debugger's Intuition", description: "You opened console or inspected something.", difficulty: "Medium" },
     { id: 10, icon: <Volume2 size={26} />, title: "Noise Creator", description: "You triggered every sound or effect available.", difficulty: "Medium" },
     { id: 11, icon: <Brain size={26} />, title: "Matrix Explorer", description: "You discovered the hidden Matrix terminal.", difficulty: "Hard" },
+    { id: 12, icon: <ChevronsDown size={26} />, title: "Scroll Warrior", description: "Scrolled all the way to the bottom.", difficulty: "Easy" },
+    { id: 13, icon: <Moon size={26} />, title: "Night Owl", description: "You visited after midnight.", difficulty: "Medium" },
+    { id: 14, icon: <Shield size={26} />, title: "Triple Threat", description: "Visited the portfolio 3 times.", difficulty: "Medium" },
+    { id: 15, icon: <Gamepad2 size={26} />, title: "Konami Savant", description: "You know the code. ↑↑↓↓←→←→BA", difficulty: "Hard" },
 ];
 
 // Helper to unlock an achievement

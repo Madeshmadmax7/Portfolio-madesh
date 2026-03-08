@@ -64,6 +64,16 @@ h6 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes matrixFadeOut {
+  0%, 50% { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
 /* ========= PORTFOLIO CONTAINER animation ========= */
 .portfolio-container {
   opacity: 0;
