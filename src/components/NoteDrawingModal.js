@@ -8,6 +8,7 @@ const COLORS = ['#000000', '#ffffff', '#e74c3c', '#e67e22', '#f1c40f', '#2ecc71'
 const BG = '#f2f2f2';
 
 export default function NoteDrawingModal({ onClose, onPosted }) {
+    const DISPLAY_DPR = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 3) : 1;
     const canvasRef = useRef(null);
     const [color, setColor] = useState('#000000');
     const [brushSize, setBrushSize] = useState(4);
@@ -24,9 +25,10 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
 
     useEffect(() => {
         const ctx = canvasRef.current.getContext('2d');
+        ctx.setTransform(DISPLAY_DPR, 0, 0, DISPLAY_DPR, 0, 0);
         ctx.fillStyle = BG;
         ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
-    }, []);
+    }, [DISPLAY_DPR]);
 
     const getPos = (e) => {
         const rect = canvasRef.current.getBoundingClientRect();
@@ -70,10 +72,11 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
 
     const redrawAll = useCallback((strokeList) => {
         const ctx = canvasRef.current.getContext('2d');
+        ctx.setTransform(DISPLAY_DPR, 0, 0, DISPLAY_DPR, 0, 0);
         ctx.fillStyle = BG;
         ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
         strokeList.forEach(s => applyStroke(ctx, s));
-    }, [applyStroke]);
+    }, [applyStroke, DISPLAY_DPR]);
 
     const onDown = (e) => {
         e.preventDefault();
@@ -163,13 +166,29 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
         redrawAll([]);
     };
 
+    const buildExportDataUrl = useCallback((scale = 4) => {
+        const out = document.createElement('canvas');
+        out.width = CANVAS_W * scale;
+        out.height = CANVAS_H * scale;
+
+        const outCtx = out.getContext('2d');
+        outCtx.fillStyle = BG;
+        outCtx.fillRect(0, 0, out.width, out.height);
+        outCtx.save();
+        outCtx.scale(scale, scale);
+        strokes.forEach((s) => applyStroke(outCtx, s));
+        outCtx.restore();
+
+        return out.toDataURL('image/png');
+    }, [strokes, applyStroke]);
+
     const handleSubmit = async () => {
         if (!name.trim()) { setError('What should we call you?'); return; }
         if (strokes.length === 0) { setError('Draw something first!'); return; }
         setSubmitting(true);
         setError('');
         try {
-            const drawing = canvasRef.current.toDataURL('image/jpeg', 0.78);
+            const drawing = buildExportDataUrl(4);
             await postNote({ name: name.trim(), message: message.trim(), drawing });
             localStorage.setItem('notePosted', 'true');
             onPosted({ name: name.trim(), message: message.trim(), drawing, timestamp: Date.now() });
@@ -197,8 +216,8 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
                     <div className="flex-1 p-3">
                         <canvas
                             ref={canvasRef}
-                            width={CANVAS_W}
-                            height={CANVAS_H}
+                            width={Math.round(CANVAS_W * DISPLAY_DPR)}
+                            height={Math.round(CANVAS_H * DISPLAY_DPR)}
                             className="w-full h-full rounded-[10px] touch-none select-none block"
                             style={{ cursor: isEraser ? 'cell' : 'crosshair', aspectRatio: `${CANVAS_W}/${CANVAS_H}` }}
                             onMouseDown={onDown}
