@@ -20,9 +20,8 @@ const projectsData = [
         desc: 'An AI-powered productivity system that analyzes YouTube content using NLP, tracks study behavior through a browser extension, and blocks distractions to keep learning focused.',
         src: img13,
         stack: ['React', 'FastAPI', 'NLP', 'Chrome Ext','Tailwind','LLM','RAG','Sqlite'],
-        github: 'https://github.com/Madeshmadmax7/polaris-full',
-        live: 'https://polaris-planner.vercel.app',
-        inProgress: true,
+        github: 'https://github.com/Madeshmadmax7/polaris-api/',
+        live: 'https://polaristracker.netlify.app/',
 
     },
     {
@@ -43,7 +42,6 @@ const projectsData = [
         github: 'https://github.com/Madeshmadmax7/doclink',
         live: 'https://doclink.vercel.app',
         inProgress: true,
-
     },
 
     {
