@@ -201,7 +201,6 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
     return (
         <div
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
-            onMouseDown={e => { if (e.target === e.currentTarget) onClose(); }}
         >
             <div className="bg-[#0a0a0a] border border-[#1e1e1e] rounded-[20px] overflow-hidden shadow-2xl [animation:fadeInScale_0.2s_ease] flex" style={{ maxWidth: 820, width: '100%' }}>
 
@@ -213,12 +212,12 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
                         <span className="font-mono text-[9px] text-[#222] tracking-[0.3em]">{CANVAS_W}×{CANVAS_H}</span>
                     </div>
                     {/* canvas */}
-                    <div className="flex-1 p-3">
+                    <div className="flex-1">
                         <canvas
                             ref={canvasRef}
                             width={Math.round(CANVAS_W * DISPLAY_DPR)}
                             height={Math.round(CANVAS_H * DISPLAY_DPR)}
-                            className="w-full h-full rounded-[10px] touch-none select-none block"
+                            className="w-full h-full touch-none select-none block"
                             style={{ cursor: isEraser ? 'cell' : 'crosshair', aspectRatio: `${CANVAS_W}/${CANVAS_H}` }}
                             onMouseDown={onDown}
                             onMouseMove={onMove}

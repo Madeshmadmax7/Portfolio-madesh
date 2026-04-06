@@ -53,7 +53,7 @@ const NoteCard = ({ note, idx }) => {
                         src={note.drawing}
                         alt={`${note.name}'s drawing`}
                         draggable={false}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover"
                     />
                 </div>
                 {/* Meta */}
