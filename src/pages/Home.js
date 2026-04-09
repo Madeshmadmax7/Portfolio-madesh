@@ -5,6 +5,7 @@ import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 import ContactAndGame from "../components/ContactAndGame";
 import GithubContributionCard from "../components/GithubContributionCard";
+import LeetCodeStatsCard from "../components/LeetCodeStatsCard";
 import TypingChallenge from "../components/TypingChallenge";
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
             </section>
             <section id="pulse">
                 <GithubContributionCard />
+                <LeetCodeStatsCard username="Madesh_A_12" />
                 <TypingChallenge/>
             </section>
             <section id="skills">

@@ -21,6 +21,14 @@ export default defineConfig({
 
     server: {
         port: 5173,
+        proxy: {
+            "/api/leetcode/graphql": {
+                target: "https://leetcode.com",
+                changeOrigin: true,
+                secure: true,
+                rewrite: path => path.replace("/api/leetcode/graphql", "/graphql"),
+            },
+        },
     },
 
     build: {
