@@ -7,8 +7,10 @@ import ContactAndGame from "../components/ContactAndGame";
 import GithubContributionCard from "../components/GithubContributionCard";
 import LeetCodeStatsCard from "../components/LeetCodeStatsCard";
 import TypingChallenge from "../components/TypingChallenge";
+import Testimonials from "../components/Testimonials";
 
 const Home = () => {
+
     return (
         <div className="portfolio-container fade-in">
             <Navbar />
@@ -28,6 +30,9 @@ const Home = () => {
                 <br></br>
                 <br></br>
                 <Projects />
+            </section>
+            <section id="testimonials">
+                <Testimonials />
             </section>
             <section id="contact">
                 <ContactAndGame />

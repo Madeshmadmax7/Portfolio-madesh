@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import projectData from "../data/projectsData";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const Projects = () => {
     const navigate = useNavigate();
+    const [hoveredCard, setHoveredCard] = useState(-1);
+    const [openedLinks, setOpenedLinks] = useState({});
+
+    const markLinkOpened = (projectTitle, linkType) => {
+        const key = `${projectTitle}-${linkType}`;
+        setOpenedLinks((prev) => ({ ...prev, [key]: true }));
+        setTimeout(() => {
+            setOpenedLinks((prev) => ({ ...prev, [key]: false }));
+        }, 1400);
+    };
+
     return (
         <div style={{ marginTop: "5rem" }}>
             <h6 className="font-['Exo_2',sans-serif] text-[2rem] text-white font-bold text-center mt-2 mb-6">Featured Projects</h6>
             <div className="flex flex-col gap-6 px-6 max-w-[1200px] mx-auto">
                 {projectData.slice(0, 6).map((project, index) => (
-                    <div className="project-card max-w-[600px] mx-auto bg-gradient-to-b from-black/60 rounded-[10px] overflow-hidden text-white text-[0.9rem] w-full" key={index}>
+                    <div
+                        className={`project-card max-w-[600px] mx-auto bg-gradient-to-b from-black/60 rounded-[10px] overflow-hidden text-white text-[0.9rem] w-full transition-all duration-300 ${hoveredCard === index ? 'border border-white/30 shadow-[0_0_18px_rgba(255,255,255,0.18)]' : 'border border-transparent'}`}
+                        key={index}
+                        onMouseEnter={() => setHoveredCard(index)}
+                        onMouseLeave={() => setHoveredCard(-1)}
+                    >
                         <div className="project-image-wrapper p-3 transition-[background-image] duration-300">
                             <img
                                 src={project.src}
                                 alt={project.title}
-                                className="w-full block rounded-[6px] transition-transform duration-300 hover:-translate-y-1"
+                                className={`w-full block rounded-[6px] transition-transform duration-300 ${hoveredCard === index ? 'scale-[1.01] -translate-y-1' : ''}`}
                             />
                         </div>
                         <div className="pt-3 px-3 pb-3 mt-[-5px] bg-gradient-to-b from-[rgba(0,0,0,0.9)] via-[rgba(0,0,0,0.7)] to-transparent">
@@ -40,18 +56,26 @@ const Projects = () => {
                                             href={project.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => markLinkOpened(project.title, 'source')}
                                             className="py-[0.4rem] px-3 rounded-[6px] no-underline text-[0.85rem] border border-[#444] transition-colors duration-300 bg-[#222] text-white hover:bg-[#444] hover:text-white"
                                         >
                                             <i className="fa-brands fa-github" style={{ marginRight: "8px" }}></i>Source
                                         </a>
+                                        {openedLinks[`${project.title}-source`] && (
+                                            <span className="text-[11px] text-[#9b9b9b] self-center">Opened source</span>
+                                        )}
                                         <a
                                             href={project.live}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => markLinkOpened(project.title, 'live')}
                                             className="py-[0.4rem] px-3 rounded-[6px] no-underline text-[0.85rem] border border-[#444] transition-colors duration-300 bg-white text-black hover:bg-[#444] hover:text-white"
                                         >
                                             <i className="fa-solid fa-earth-asia" style={{ marginRight: "8px" }}></i>Visit
                                         </a>
+                                        {openedLinks[`${project.title}-live`] && (
+                                            <span className="text-[11px] text-[#9b9b9b] self-center">Opened live demo</span>
+                                        )}
                                     </>
                                 )}
                             </div>

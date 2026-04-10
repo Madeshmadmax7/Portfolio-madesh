@@ -12,6 +12,7 @@ import Matrix from "./pages/Matrix";
 import SnakeGame from "./components/SnakeGame";
 import Notes from "./pages/Notes";
 
+import './App.css';
 
 function AppContent() {
   const [loading, setLoading] = useState(true);
@@ -127,7 +128,7 @@ function AppContent() {
 
   // 🎮 Konami Code → opens Snake game
   useEffect(() => {
-    const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    const seq = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
     let idx = 0;
     const handler = (e) => {
       if (e.key === seq[idx]) {

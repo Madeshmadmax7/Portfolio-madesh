@@ -37,6 +37,7 @@ const achievementsData = [
     { id: 14, icon: <Shield size={26} />, title: "Triple Threat", description: "Visited the portfolio 3 times.", difficulty: "Medium" },
     { id: 15, icon: <Gamepad2 size={26} />, title: "Konami Savant", description: "You know the code. ↑↑↓↓←→←→BA", difficulty: "Hard" },
     { id: 16, icon: <PenLine size={26} />, title: "Left a Mark", description: "You drew something and left a note for the world.", difficulty: "Easy" },
+    { id: 17, icon: <Map size={26} />, title: "Skill Cartographer", description: "Clicked every skill and mapped the exact order.", difficulty: "Medium" },
 ];
 
 // Helper to unlock an achievement
