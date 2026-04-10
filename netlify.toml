@@ -5,11 +5,8 @@
 [build.environment]
   NODE_VERSION = "22"
 
-[[redirects]]
-  from   = "/api/leetcode/graphql"
-  to     = "https://leetcode.com/graphql"
-  status = 200
-  force  = true
+[functions]
+  directory = "netlify/functions"
 
 [[redirects]]
   from   = "/*"

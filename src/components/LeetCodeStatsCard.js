@@ -2,7 +2,9 @@ import React, { useEffect, useMemo, useState } from "react";
 import GitHubCalendar from "react-github-contribution-calendar";
 
 const AUTO_REFRESH_MS = 30 * 60 * 1000;
-const LEETCODE_GRAPHQL = "/api/leetcode/graphql";
+const LEETCODE_GRAPHQL = import.meta.env.DEV
+    ? "/api/leetcode/graphql"
+    : "/.netlify/functions/leetcode-graphql";
 
 // Previous providers kept for reference (fallback-ready if needed again):
 // const LEETCODE_STATS_PRIMARY = "https://leetcode-api-faisalshohag.vercel.app";
