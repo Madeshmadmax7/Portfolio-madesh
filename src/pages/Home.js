@@ -7,7 +7,7 @@ import ContactAndGame from "../components/ContactAndGame";
 import GithubContributionCard from "../components/GithubContributionCard";
 import LeetCodeStatsCard from "../components/LeetCodeStatsCard";
 import TypingChallenge from "../components/TypingChallenge";
-import Testimonials from "../components/Testimonials";
+// import Testimonials from "../components/Testimonials";
 
 const Home = () => {
 
@@ -31,9 +31,9 @@ const Home = () => {
                 <br></br>
                 <Projects />
             </section>
-            <section id="testimonials">
+            {/* <section id="testimonials">
                 <Testimonials />
-            </section>
+            </section> */}
             <section id="contact">
                 <ContactAndGame />
             </section>
