@@ -92,55 +92,72 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
         ctx.arc(pos.x, pos.y, (isEraser ? 22 : brushSize) / 2, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
+
+        if (e.pointerId != null && canvasRef.current.setPointerCapture) {
+            canvasRef.current.setPointerCapture(e.pointerId);
+        }
     };
 
     const onMove = (e) => {
         if (!drawing) return;
         e.preventDefault();
-        const pos = getPos(e);
+        const events = typeof e.getCoalescedEvents === 'function' ? e.getCoalescedEvents() : [e];
         const pts = currentStrokeRef.current;
         const ctx = canvasRef.current.getContext('2d');
 
-        // Draw smooth segment using quadratic curve to midpoint
-        if (pts.length >= 2) {
-            const prev = pts[pts.length - 2];
-            const curr = pts[pts.length - 1];
-            const mx = (curr.x + pos.x) / 2;
-            const my = (curr.y + pos.y) / 2;
-            ctx.save();
-            ctx.strokeStyle = isEraser ? BG : color;
-            ctx.lineWidth = isEraser ? 22 : brushSize;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-            ctx.beginPath();
-            ctx.moveTo((prev.x + curr.x) / 2, (prev.y + curr.y) / 2);
-            ctx.quadraticCurveTo(curr.x, curr.y, mx, my);
-            ctx.stroke();
-            ctx.restore();
-        } else if (pts.length === 1) {
-            const prev = pts[0];
-            ctx.save();
-            ctx.strokeStyle = isEraser ? BG : color;
-            ctx.lineWidth = isEraser ? 22 : brushSize;
-            ctx.lineCap = 'round';
-            ctx.beginPath();
-            ctx.moveTo(prev.x, prev.y);
-            ctx.lineTo(pos.x, pos.y);
-            ctx.stroke();
-            ctx.restore();
+        for (const eventPoint of events) {
+            const pos = getPos(eventPoint);
+
+            if (pts.length >= 2) {
+                const prev = pts[pts.length - 2];
+                const curr = pts[pts.length - 1];
+                const mx = (curr.x + pos.x) / 2;
+                const my = (curr.y + pos.y) / 2;
+                ctx.save();
+                ctx.strokeStyle = isEraser ? BG : color;
+                ctx.lineWidth = isEraser ? 22 : brushSize;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.beginPath();
+                ctx.moveTo((prev.x + curr.x) / 2, (prev.y + curr.y) / 2);
+                ctx.quadraticCurveTo(curr.x, curr.y, mx, my);
+                ctx.stroke();
+                ctx.restore();
+            } else if (pts.length === 1) {
+                const prev = pts[0];
+                ctx.save();
+                ctx.strokeStyle = isEraser ? BG : color;
+                ctx.lineWidth = isEraser ? 22 : brushSize;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(prev.x, prev.y);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            pts.push(pos);
+            lastPosRef.current = pos;
         }
-        currentStrokeRef.current = [...pts, pos];
     };
 
     const onUp = (e) => {
         if (!drawing) return;
         e.preventDefault();
         setDrawing(false);
+        if (e.pointerId != null && canvasRef.current?.releasePointerCapture) {
+            try {
+                canvasRef.current.releasePointerCapture(e.pointerId);
+            } catch {
+                // Ignore if capture was already released.
+            }
+        }
         const pts = currentStrokeRef.current;
         if (pts.length > 0) {
-            setStrokes(prev => [...prev, { color, eraser: isEraser, size: brushSize, points: pts }]);
+            setStrokes(prev => [...prev, { color, eraser: isEraser, size: brushSize, points: [...pts] }]);
         }
         currentStrokeRef.current = [];
+        lastPosRef.current = null;
     };
 
     const undo = () => {
@@ -219,13 +236,10 @@ export default function NoteDrawingModal({ onClose, onPosted }) {
                             height={Math.round(CANVAS_H * DISPLAY_DPR)}
                             className="w-full h-full touch-none select-none block"
                             style={{ cursor: isEraser ? 'cell' : 'crosshair', aspectRatio: `${CANVAS_W}/${CANVAS_H}` }}
-                            onMouseDown={onDown}
-                            onMouseMove={onMove}
-                            onMouseUp={onUp}
-                            onMouseLeave={onUp}
-                            onTouchStart={onDown}
-                            onTouchMove={onMove}
-                            onTouchEnd={onUp}
+                            onPointerDown={onDown}
+                            onPointerMove={onMove}
+                            onPointerUp={onUp}
+                            onPointerCancel={onUp}
                         />
                     </div>
                 </div>
