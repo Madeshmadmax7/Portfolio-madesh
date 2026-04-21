@@ -28,6 +28,12 @@ export default defineConfig({
                 secure: true,
                 rewrite: path => path.replace("/api/leetcode/graphql", "/graphql"),
             },
+            "/api/duolingo/users": {
+                target: "https://www.duolingo.com",
+                changeOrigin: true,
+                secure: true,
+                rewrite: path => path.replace("/api/duolingo/users", "/2017-06-30/users"),
+            },
         },
     },
 

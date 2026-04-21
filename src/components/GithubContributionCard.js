@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GitHubCalendar from "react-github-contribution-calendar";
 
-const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
+const GithubContributionCard = ({ username = "Madeshmadmax7", compact = false, showTitle = true }) => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [userData, setUserData] = useState(null);
   const [contributionData, setContributionData] = useState({});
@@ -125,8 +125,8 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
   };
 
   if (loading || !userData) return (
-    <div className="w-full min-h-screen pt-[100px] pb-[80px] flex justify-center items-center">
-      <div className="w-full max-w-[925px] px-[2.5rem] animate-pulse">
+    <div className={`w-full ${compact ? "py-2" : "min-h-screen pt-[100px] pb-[80px]"} flex justify-center items-center`}>
+      <div className={`w-full ${compact ? "max-w-none px-0" : "max-w-[925px] px-[2.5rem]"} animate-pulse`}>
         <div className="h-7 w-24 bg-white/10 rounded-md mx-auto mb-10"></div>
         <div className="rounded-[1rem] border border-[rgba(105,105,105,0.3)] bg-[rgba(0,0,0,0.76)] overflow-hidden">
           <div className="h-14 flex items-center px-6 gap-2 border-b border-white/5">
@@ -163,9 +163,11 @@ const GithubContributionCard = ({ username = "Madeshmadmax7" }) => {
 
   return (
     <>
-      <div className="w-full min-h-screen pt-[100px] pb-[80px] flex justify-center items-center bg-transparent">
-        <div className="relative w-full max-w-[925px] rounded-[1.5rem] overflow-hidden px-[2.5rem] pb-[3.5rem] mx-auto box-border">
-          <h6 className="font-['Exo_2',sans-serif] text-[2rem] text-white font-bold text-center mt-20 mb-8 tracking-[0.01em]">Heat Map</h6>
+      <div className={`w-full ${compact ? "py-2" : "min-h-screen pt-[100px] pb-[80px]"} flex justify-center items-center bg-transparent`}>
+        <div className={`relative w-full ${compact ? "max-w-none rounded-xl px-0 pb-0" : "max-w-[925px] rounded-[1.5rem] px-[2.5rem] pb-[3.5rem]"} overflow-hidden mx-auto box-border`}>
+          {showTitle && !compact && (
+            <h6 className="font-['Exo_2',sans-serif] text-[2rem] text-white font-bold text-center mt-20 mb-8 tracking-[0.01em]">Heat Map</h6>
+          )}
           <div className="relative z-[10] rounded-[1rem] border-2 border-double border-[rgba(105,105,105,0.5)] bg-[rgba(0,0,0,0.76)] text-[rgba(255,255,255,0.98)] overflow-hidden box-border">
             {/* Browser Header */}
             <div className="browser-header relative flex items-center h-14 px-6 gap-2">

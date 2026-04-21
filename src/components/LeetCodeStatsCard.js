@@ -127,7 +127,7 @@ const fetchLeetCodeGraphQL = async (query, variables) => {
     return payload?.data;
 };
 
-const LeetCodeStatsCard = ({ username = "Madesh_A_12" }) => {
+const LeetCodeStatsCard = ({ username = "Madesh_A_12", compact = false, showTitle = true }) => {
     const [profile, setProfile] = useState(null);
     const [stats, setStats] = useState(null);
     const [calendarValues, setCalendarValues] = useState({});
@@ -330,8 +330,8 @@ const LeetCodeStatsCard = ({ username = "Madesh_A_12" }) => {
 
     if (loading) {
         return (
-            <div className="w-full min-h-screen pt-[100px] pb-[40px] flex justify-center items-center">
-                <div className="w-full max-w-[925px] px-[2.5rem] animate-pulse">
+            <div className={`w-full ${compact ? "py-2" : "min-h-screen pt-[100px] pb-[40px]"} flex justify-center items-center`}>
+                <div className={`w-full ${compact ? "max-w-none px-0" : "max-w-[925px] px-[2.5rem]"} animate-pulse`}>
                     <div className="h-7 w-40 bg-white/10 rounded-md mx-auto mb-10"></div>
                     <div className="rounded-[1rem] border border-[rgba(105,105,105,0.3)] bg-[rgba(0,0,0,0.76)] overflow-hidden">
                         <div className="h-14 border-b border-white/5"></div>
@@ -348,11 +348,13 @@ const LeetCodeStatsCard = ({ username = "Madesh_A_12" }) => {
     }
 
     return (
-        <div className="w-full min-h-screen pt-[100px] pb-[40px] flex justify-center items-center bg-transparent">
-            <div className="relative w-full max-w-[925px] rounded-[1.5rem] overflow-hidden px-[2.5rem] pb-[3.5rem] mx-auto box-border">
-                <h6 className="font-['Exo_2',sans-serif] text-[2rem] text-white font-bold text-center mt-20 mb-8 tracking-[0.01em]">
-                    LeetCode Pulse
-                </h6>
+        <div className={`w-full ${compact ? "py-2" : "min-h-screen pt-[100px] pb-[40px]"} flex justify-center items-center bg-transparent`}>
+            <div className={`relative w-full ${compact ? "max-w-none rounded-xl px-0 pb-0" : "max-w-[925px] rounded-[1.5rem] px-[2.5rem] pb-[3.5rem]"} overflow-hidden mx-auto box-border`}>
+                {showTitle && !compact && (
+                    <h6 className="font-['Exo_2',sans-serif] text-[2rem] text-white font-bold text-center mt-20 mb-8 tracking-[0.01em]">
+                        LeetCode Pulse
+                    </h6>
+                )}
 
                 <div className="relative z-[10] rounded-[1rem] border-2 border-double border-[rgba(105,105,105,0.5)] bg-[rgba(0,0,0,0.76)] text-[rgba(255,255,255,0.98)] overflow-hidden box-border">
                     <div className="relative flex items-center h-14 px-6 gap-2 border-b border-[rgba(105,105,105,0.25)]">
@@ -392,7 +394,7 @@ const LeetCodeStatsCard = ({ username = "Madesh_A_12" }) => {
                                 <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                             </svg>
-                            <span className="text-xs opacity-70 text-center flex-1">leetcode.com/{username}</span>
+                            <span className="text-xs opacity-70 text-center flex-1" style={{ cursor: "pointer" }} onClick={() => window.open(profileUrl, "_blank")}>leetcode.com/u/{username}</span>
                             <svg
                                 className="w-3.5 h-3.5 opacity-70 cursor-pointer"
                                 viewBox="0 0 24 24"
