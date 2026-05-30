@@ -42,7 +42,7 @@ const Header = () => {
         fetch('https://api.countapi.xyz/hit/madeshdev/portfolio')
             .then(r => r.json())
             .then(d => setVisitorCount(d.value))
-            .catch(() => {});
+            .catch(() => { });
     }, []);
 
     const handleHover = () => {
@@ -141,23 +141,21 @@ const Header = () => {
                                 className="font-bold cursor-pointer relative transition-colors duration-300"
                                 onClick={() => setIsHighlighted(!isHighlighted)}
                             >
-                                Full Stack{" "}
+                                Software{" "}
                                 <span
                                     className="[-webkit-text-stroke:1.7px_rgb(17,0,255)] text-transparent font-bold"
                                     style={{ fontFamily: "'IBM Plex Sans', sans-serif" }}
                                 >
-                                    Developer
+                                    Engineer
                                 </span>
                             </span>
                             <br />
                         </h1>
 
-                        <p className={`hero-description text-[#aaaaaa] mb-6 max-w-[500px] leading-[23px] ${isHighlighted ? "highlighted" : ""}`}>
-                            I'm a passionate <span className="desc-key">engineering student</span> with a focus on <span className="desc-key">creating</span>,
-                            seamless, <span className="desc-key">full-stack solutions</span>. I bridge the gap between <span className="desc-key">great
-                            design</span> and <span className="desc-key"> robust functionality</span> ,
-                            <span className="desc-key">  building user-centered</span> applications that are both
-                            intuitive and efficient.
+                        <p className={`hero-description text-[#aaaaaa] mb-6 max-w-[500px] leading-relaxed ${isHighlighted ? "highlighted" : ""}`}>
+                            I'm a passionate <span className="desc-key inline-block whitespace-nowrap">software engineer</span> with a focus on <span className="desc-key inline-block whitespace-nowrap">building</span>,
+                            scalable, <span className="desc-key inline-block whitespace-nowrap">modern applications</span>. I bridge the gap between <span className="desc-key inline-block whitespace-nowrap">problem solving</span> and <span className="desc-key inline-block whitespace-nowrap">clean code</span>,
+                            <span className="desc-key inline-block whitespace-nowrap">creating reliable</span> applications that are both intuitive and efficient.
                         </p>
 
                         <div className="flex gap-2">
